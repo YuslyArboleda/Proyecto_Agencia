@@ -4,7 +4,11 @@ import mysql.connector
 # Establecer la conexión
 try:
     connection = mysql.connector.connect(
-        host="localhost", user="root", password="admin", database="agencia"
+<<<<<<< HEAD:proyecto_Juanda s_Yeimar_Yeiner/Temple/conexion.py
+        host="localhost", user="root", password="1234", database="agencia_grupo"
+=======
+        host="localhost", user="root", password="1234", database="agencia_grupo"
+>>>>>>> ef8dcb809808847630c23be2cbb75a4c5bde94cb:Yusly/conexion.py
     )
 
     if connection.is_connected():
