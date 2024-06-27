@@ -35,3 +35,4 @@ class Ahorro(Cuenta):
 
 x = Corriente("Juan", 200)
 print(x)
+# Luis Edin
