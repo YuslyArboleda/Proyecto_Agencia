@@ -4,7 +4,7 @@ import mysql.connector
 # Establecer la conexión
 try:
     connection = mysql.connector.connect(
-        host="localhost:3306", user="root", password="1234", database="agencia_wendy_edwar"
+        host="localhost", user="root", password="admin", database="agencia"
     )
 
     if connection.is_connected():
