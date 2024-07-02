@@ -35,3 +35,5 @@ class Ahorro(Cuenta):
 
 x = Corriente("Juan", 200)
 print(x)
+print(Cuenta.declaracion)
+print(Cuenta("Juan", 2000))
