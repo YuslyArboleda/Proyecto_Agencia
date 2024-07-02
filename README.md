@@ -1,4 +1,5 @@
 # Proyecto_Agencia
 Instalar paquete mysql=>
- - pip install mysql-connector-python
+ - python --version
+ - pip install mysql-connector-python -- user
  - pip list
