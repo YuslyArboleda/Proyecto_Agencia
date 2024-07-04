@@ -21,3 +21,4 @@ finally:
         cursor.close()
         connection.close()
         print("La conexión a la base de datos se ha cerrado.")
+
