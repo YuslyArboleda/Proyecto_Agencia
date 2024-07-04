@@ -52,7 +52,7 @@ CREATE TABLE `permiso_usuario` (
   `idPermiso_usuario` int NOT NULL AUTO_INCREMENT,
   `id_permiso` int NOT NULL,
   `id_usuario` int NOT NULL,
-  `estado` int NOT NULL,
+  `estado` tinyint NOT NULL,
   PRIMARY KEY (`idPermiso_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -270,4 +270,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-04 11:15:42
+-- Dump completed on 2024-07-04 11:45:46
