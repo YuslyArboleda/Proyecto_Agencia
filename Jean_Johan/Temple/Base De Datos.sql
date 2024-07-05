@@ -23,18 +23,19 @@ DROP TABLE IF EXISTS `paquete`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paquete` (
-  `idPaquete` int NOT NULL AUTO_INCREMENT,
-  `id_hotel` int NOT NULL,
-  `id_destino` int NOT NULL,
-  `Nombre` varchar(100) NOT NULL,
-  `Descripcion` varchar(350) NOT NULL,
-  `Fecha_inicio` date NOT NULL,
-  `Fecha_fin` date NOT NULL,
-  `Costo` int NOT NULL,
-  `Noche_Estadia` int NOT NULL,
+  `id_paquete` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `vigencia_inicio` date NOT NULL,
+  `vigencia_fin` date NOT NULL,
+  `noche` int NOT NULL,
+  `incluye` varchar(200) NOT NULL,
+  `no_incluye` varchar(200) NOT NULL,
+  `costo` float NOT NULL,
   `estado` tinyint NOT NULL,
-  PRIMARY KEY (`idPaquete`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `disponibilidad` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_paquete`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,9 +44,31 @@ CREATE TABLE `paquete` (
 
 LOCK TABLES `paquete` WRITE;
 /*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-INSERT INTO `paquete` VALUES (6,1,1,'JOJOJOJO','WOMP-WOMP','2002-12-12','2022-12-12',101,101,1);
+INSERT INTO `paquete` VALUES (1,'johan','jojo','2002-12-12','2002-12-12',20,'todo','nada',2000,1,'disponible'),(7,'webin','ajaja','2020-03-03','2015-04-04',4,'todo','ada',3000,1,'disponible'),(8,'paquete','jejejj','2021-03-03','2023-03-03',5,'todo','nada',5000,1,'disponible');
 /*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `paquete_vista`
+--
+
+DROP TABLE IF EXISTS `paquete_vista`;
+/*!50001 DROP VIEW IF EXISTS `paquete_vista`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `paquete_vista` AS SELECT 
+ 1 AS `id_paquete`,
+ 1 AS `nombre`,
+ 1 AS `descripcion`,
+ 1 AS `vigencia_inicio`,
+ 1 AS `vigencia_fin`,
+ 1 AS `noche`,
+ 1 AS `incluye`,
+ 1 AS `no_incluye`,
+ 1 AS `costo`,
+ 1 AS `estado`,
+ 1 AS `disponibilidad`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Dumping routines for database 'proyecto_agencia'
@@ -60,9 +83,9 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_paquete`(in IdPaq int, in Hotel int, in Destino int, in Nomb varchar(100), in Descr varchar(350), in FechaInicio date, in FechaFin date, in Cost int, in NocheEstadia int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_paquete`(in idpaquete int, in nomb varchar(200), in descr varchar(500), in vigenciainicio date, in vigenciafin date, in noch int, in inclu varchar(200), noincluye varchar(200), in cost float, in disponi varchar(50))
 BEGIN
-update paquete set idPaquete = IdPaq, id_hotel = Hotel, id_destino = Destino, Nombre = Nomb, Descripcion = Descr, Fecha_inicio = FechaInicio, Fecha_fin = FechaFin, Costo = Cost, Noche_Estadia = NocheEstadia, estado = '0' where idPaquete = IdPaq;
+update paquete set id_paquete = idpaquete, nombre = nomb, descripcion = descr, vigencia_inicio = vigenciainicio, vigencia_fin = vigenciafin, noche = noch, incluye = inclu, no_incluye = noincluye, costo = cost, disponibilidad = disponi where id_paquete = idpaquete;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -81,7 +104,26 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_paquete`(in idpaq int)
 BEGIN
-select * from paquete where idPaquete = idpaq;
+select * from paquete where id_paquete = idpaq;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_paquete` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_paquete`(in valor varchar(45))
+BEGIN
+select * from paquete_vista where id_paquete like concat('%', valor,'%') || nombre like concat('%', valor,'%') || descripcion like concat('%', valor,'%') || vigencia_inicio like concat('%', valor,'%') || vigencia_fin like concat('%', valor,'%') || noche like concat('%', valor,'%') || incluye like concat('%', valor,'%') || no_incluye like concat('%', valor,'%') || costo like concat('%', valor,'%') || estado like concat('%', valor,'%') ||disponibilidad like concat('%', valor,'%');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -100,7 +142,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_paquete`(in idPaq int)
 BEGIN
-update paquete set estado = '1' where idPaquete = idPaq;
+update paquete set estado = '0' where id_paquete = idPaq;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -117,15 +159,33 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_paquete`(in Hotel int, in Destino int, in Nomb varchar(100), in Descrip varchar(350), in FechaInicio date, in FechaFin date, in Cost int, in NocheEstadia int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_paquete`(in nomb varchar(200), in descr varchar(500), in vigenciainicio date, in vigenciafin date, in noch int, in inclu varchar(200), in noincluye varchar(200), in cost float, in disponibi varchar(50))
 BEGIN
-insert into paquete (id_hotel, id_destino, Nombre, Descripcion, Fecha_inicio, Fecha_fin, Costo, Noche_Estadia) values (Hotel, Destino, Nomb,Descrip,FechaInicio,FechaFin,Cost,NocheEstadia, '0');
+insert into paquete (nombre, descripcion, vigencia_inicio, vigencia_fin, noche, incluye, no_incluye, costo, estado, disponibilidad) values (nomb, descr, vigenciainicio, vigenciafin, noch, inclu, noincluye, cost, '1', disponibi);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `paquete_vista`
+--
+
+/*!50001 DROP VIEW IF EXISTS `paquete_vista`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `paquete_vista` AS select `paquete`.`id_paquete` AS `id_paquete`,`paquete`.`nombre` AS `nombre`,`paquete`.`descripcion` AS `descripcion`,`paquete`.`vigencia_inicio` AS `vigencia_inicio`,`paquete`.`vigencia_fin` AS `vigencia_fin`,`paquete`.`noche` AS `noche`,`paquete`.`incluye` AS `incluye`,`paquete`.`no_incluye` AS `no_incluye`,`paquete`.`costo` AS `costo`,`paquete`.`estado` AS `estado`,`paquete`.`disponibilidad` AS `disponibilidad` from `paquete` where (`paquete`.`estado` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -136,4 +196,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 10:23:55
+-- Dump completed on 2024-07-04 11:38:18
