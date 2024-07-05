@@ -16,68 +16,61 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `acomodacion`
+-- Table structure for table `destino`
 --
 
-DROP TABLE IF EXISTS `acomodacion`;
+DROP TABLE IF EXISTS `destino`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `acomodacion` (
-  `id_acomodacion` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(300) NOT NULL,
-  `estado_acomoda` tinyint NOT NULL,
-  PRIMARY KEY (`id_acomodacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `destino` (
+  `id_Destino` int NOT NULL AUTO_INCREMENT,
+  `Departamento` varchar(50) NOT NULL,
+  `Ciudad` varchar(45) NOT NULL,
+  `estado` tinyint NOT NULL,
+  PRIMARY KEY (`id_Destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `acomodacion`
+-- Dumping data for table `destino`
 --
 
-LOCK TABLES `acomodacion` WRITE;
-/*!40000 ALTER TABLE `acomodacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `acomodacion` ENABLE KEYS */;
+LOCK TABLES `destino` WRITE;
+/*!40000 ALTER TABLE `destino` DISABLE KEYS */;
+INSERT INTO `destino` VALUES (123,'bogota','quibdo',1),(99999,'adad','dadad',0);
+/*!40000 ALTER TABLE `destino` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hotel_acomodacion`
+-- Table structure for table `permiso_usuario`
 --
 
-DROP TABLE IF EXISTS `hotel_acomodacion`;
+DROP TABLE IF EXISTS `permiso_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hotel_acomodacion` (
-  `id_hotel_acomodacion` int NOT NULL AUTO_INCREMENT,
-  `id_acomodacion` int NOT NULL,
-  `id_hotel` int NOT NULL,
-  `temporada` varchar(20) NOT NULL,
-  `tarifa_agencia` float NOT NULL,
-  `tarifa` float NOT NULL,
-  `estado_hotelacomo` tinyint NOT NULL,
-  PRIMARY KEY (`id_hotel_acomodacion`),
-  KEY `id_acomodacion_idx` (`id_acomodacion`),
-  CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `permiso_usuario` (
+  `idPermiso_usuario` int NOT NULL AUTO_INCREMENT,
+  `id_permiso` int NOT NULL,
+  `id_usuario` int NOT NULL,
+  `estado` tinyint NOT NULL,
+  PRIMARY KEY (`idPermiso_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hotel_acomodacion`
+-- Dumping data for table `permiso_usuario`
 --
 
-LOCK TABLES `hotel_acomodacion` WRITE;
-/*!40000 ALTER TABLE `hotel_acomodacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hotel_acomodacion` ENABLE KEYS */;
+LOCK TABLES `permiso_usuario` WRITE;
+/*!40000 ALTER TABLE `permiso_usuario` DISABLE KEYS */;
+INSERT INTO `permiso_usuario` VALUES (123,1234,12345,1),(1234,12345,123456,0);
+/*!40000 ALTER TABLE `permiso_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'agencia_wendy_edwar'
+-- Dumping routines for database 'proyecto_agencia'
 --
-
---
--- Dumping routines for database 'agencia_wendy_edwar'
---
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_acomodacion` */;
+/*!50003 DROP PROCEDURE IF EXISTS `actualizacion_destino` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -87,16 +80,16 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_acomodacion`(in idacomoda int, in nom varchar(100), in descrip varchar(300))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizacion_destino`(id_desti int,depto varchar(50), cidad varchar(45),esta tinyint)
 BEGIN
-update acomodacion set nombre = nom, descripcion = descrip where id_acomodacion = idacomoda;
+update destino set id_Destino=id_desti, Departamento=depto, ciudad=cidad, estado=esta where id_Destino = id_desti;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_hotel_acomoda` */;
+/*!50003 DROP PROCEDURE IF EXISTS `actualiza_permiso_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -106,16 +99,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_hotel_acomoda`(in id_hotelacom int, in id_acomoda int, in id_hote int, in tempo varchar(20), in tari_age float, in tari float)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualiza_permiso_usuario`(id_permiso_usu int, id_permi int, id_usu int )
 BEGIN
-update hotel_acomodacion set id_acomodacion = id_hotelacom, id_hotel = id_hote, temporada = tempo, tarifa_agencia = tari_age, tarifa = tari where id_hotel_acomodacion = id_hotelacom;
+update permiso_usuario set idPermiso_usuario=id_permiso_usu, id_permiso=id_permi, id_usuario=id_usu where idPermiso_usuario = id_permiso_usu;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_acomodacion` */;
+/*!50003 DROP PROCEDURE IF EXISTS `buscar_destino` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -125,16 +118,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_acomodacion`(in valor int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_destino`(in id_desti int)
 BEGIN
-select * from acomodacion where id_acomodacion = valor;
+select * from destino where id_Destino = id_desti;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_hotel_acomodacion` */;
+/*!50003 DROP PROCEDURE IF EXISTS `buscar_permiso_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -144,16 +137,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_hotel_acomodacion`(in valor int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_permiso_usuario`(in idpermiso_usu int )
 BEGIN
-select * from hotel_acomodacion where id_hotel_acomodacion = valor;
+select * from permiso_usuario where idPermiso_usuario = idpermiso_usu;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_acomodacion` */;
+/*!50003 DROP PROCEDURE IF EXISTS `eliminacon_destino` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -163,16 +156,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_acomodacion`(in id_acomoda int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminacon_destino`(in id_desti int )
 BEGIN
-update acomodacion set estado_acomoda = '0' where id_acomodacion = id_acomoda;
+update destino set estado = '1' where id_destino = id_desti;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_hotel_acomodacion` */;
+/*!50003 DROP PROCEDURE IF EXISTS `eliminar_permiso_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -182,16 +175,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_hotel_acomodacion`(in id_hotel_acomoda int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_permiso_usuario`(in idpermiso_usu int)
 BEGIN
-update hotel_acomodacion set estado_hotelacomo = '0' where id_hotel_acomodacion = id_hotel_acomoda;
+update permiso_usuario set estado = '1' where idPermiso_usuario = idpermiso_usu;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `inst_acomoda` */;
+/*!50003 DROP PROCEDURE IF EXISTS `insersion_destino` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -201,16 +194,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_acomoda`(in nom varchar(100), in descrip varchar(300))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insersion_destino`(in id_desti int, in departamen varchar(50), in ciuda varchar (45))
 BEGIN
-insert into acomodacion (nombre, descripcion, estado_acomoda) values (nom, descrip, '1');
+insert into destino (id_Destino, Departamento,Ciudad, estado) values (id_desti, departamen,ciuda, '0');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `inst_hotelacomoda` */;
+/*!50003 DROP PROCEDURE IF EXISTS `insersion_permiso_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -220,16 +213,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_hotelacomoda`(in acomoda int, in hotel int, in temp varchar(20), in tari_agen float, in tari float, in num_per int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insersion_permiso_usuario`(in idPermiso_usu int, in id_permis int, in id_usu int  )
 BEGIN
-insert into hotel_acomodacion (id_acomodacion, id_hotel, temporada, tarifa_agencia, tarifa, numero_personas, estado_hotelacomo) values (acomoda, hotel, temp, tari_agen, tari, num_per, '1');
+insert into permiso_usuario (idPermiso_usuario, id_permiso, id_usuario, estado) values (idPermiso_usu, id_permis, id_usu, '0');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `inst_hotel_acomoda` */;
+/*!50003 DROP PROCEDURE IF EXISTS `insesion_destino` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -239,9 +232,28 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_hotel_acomoda`(in acomoda int, in hotel int, in temp varchar(20), in tari_agen float, in tari float)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insesion_destino`(in id_desti int, in departamen varchar(50), in ciuda varchar (45))
 BEGIN
-insert into hotel_acomodacion (id_acomodacion, id_hotel, temporada, tarifa_agencia, tarifa, estado_hotelacomo) values (acomoda, hotel, temp, tari_agen, tari, '1');
+insert into destino (id_Destino, Departamento,Ciudad, estado) values (id_desti, departamen,ciuda, '0');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insestar_destino` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insestar_destino`(in id_desti int, in departamen varchar(50), in ciuda varchar (45))
+BEGIN
+insert into destino (id_Destino, Departamento,Ciudad, estado) values (id_desti, departamen,ciuda, '0');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -258,4 +270,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-04 10:50:46
+-- Dump completed on 2024-07-04 11:52:53
