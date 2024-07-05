@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `paquete_tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paquete_tour` (
-  `idPaquete_tour` int NOT NULL,
+  `idPaquete_tour` int NOT NULL AUTO_INCREMENT,
   `id_tour` int NOT NULL,
   `id_paquete` int NOT NULL,
   `condicionon` tinyint NOT NULL,
@@ -72,6 +72,40 @@ CREATE TABLE `paquete_tour` (
 LOCK TABLES `paquete_tour` WRITE;
 /*!40000 ALTER TABLE `paquete_tour` DISABLE KEYS */;
 /*!40000 ALTER TABLE `paquete_tour` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `documento` varchar(20) NOT NULL,
+  `tipo_doc` varchar(20) NOT NULL,
+  `correo` varchar(200) NOT NULL,
+  `sexo` int NOT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `rol` int NOT NULL,
+  `login` varchar(30) NOT NULL,
+  `clave` varchar(40) NOT NULL,
+  `estado` tinyint NOT NULL,
+  `fecha_creacion` date NOT NULL,
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'hjn','123432','2','edhehes',1,'wefg',1,'231','1322',1,'2023-03-12');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -229,6 +263,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insertar_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_usuario`(in nom varchar(200), in docu varchar(20), in tipo varchar(20), in cor varchar(200), in sex int, in dire varchar(50), in rol int, in log varchar (30), in cla varchar(40), in fecre date)
+BEGIN
+insert into usuario (nombre, documento, tipo_doc, correo, sexo, direccion, rol, login, clave, fecha_creacion) values (nom, docu, tipo, cor, sex, dire, rol, log, cla, '1', fecre);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -239,4 +292,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-04  9:58:09
+-- Dump completed on 2024-07-05  6:52:10
