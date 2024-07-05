@@ -37,9 +37,37 @@ CREATE TABLE `destino` (
 
 LOCK TABLES `destino` WRITE;
 /*!40000 ALTER TABLE `destino` DISABLE KEYS */;
-INSERT INTO `destino` VALUES (123,'bogota','quibdo',1),(99999,'adad','dadad',0);
+INSERT INTO `destino` VALUES (123,'bogota','cali',1),(99999,'adad','dadad',1);
 /*!40000 ALTER TABLE `destino` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `mostrar_destino`
+--
+
+DROP TABLE IF EXISTS `mostrar_destino`;
+/*!50001 DROP VIEW IF EXISTS `mostrar_destino`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `mostrar_destino` AS SELECT 
+ 1 AS `id_Destino`,
+ 1 AS `Departamento`,
+ 1 AS `Ciudad`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `mostrar_permiso_usuario`
+--
+
+DROP TABLE IF EXISTS `mostrar_permiso_usuario`;
+/*!50001 DROP VIEW IF EXISTS `mostrar_permiso_usuario`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `mostrar_permiso_usuario` AS SELECT 
+ 1 AS `idPermiso_usuario`,
+ 1 AS `id_permiso`,
+ 1 AS `id_usuario`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `permiso_usuario`
@@ -140,6 +168,44 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_permiso_usuario`(in idpermiso_usu int )
 BEGIN
 select * from permiso_usuario where idPermiso_usuario = idpermiso_usu;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_destino` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_destino`(in valor varchar(50))
+BEGIN
+select * from mostrar_destino where id_Destino like concat ('%',valor,'%') || Departamento like concat ('%',valor,'%') || Ciudad like concat ('%',valor,'%'); 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_permiso_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_permiso_usuario`(in valor varchar(50))
+BEGIN
+select * from mostrar_permiso_usuario where idPermiso_usuario like concat('%', valor, '%') || id_permiso like concat('%', valor, '%') || id_usuario like concat('%', valor, '%');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -260,6 +326,61 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `mostrar_permiso_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrar_permiso_usuario`(in valor varchar(50))
+BEGIN
+select * from mostrar_permiso_usuario where idPermiso_usuario like concat('%', valor, '%') || id_permiso like concat('%', valor, '%') || id_usuario like concat('%', valor, '%');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `mostrar_destino`
+--
+
+/*!50001 DROP VIEW IF EXISTS `mostrar_destino`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `mostrar_destino` AS select `destino`.`id_Destino` AS `id_Destino`,`destino`.`Departamento` AS `Departamento`,`destino`.`Ciudad` AS `Ciudad` from `destino` where (`destino`.`estado` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `mostrar_permiso_usuario`
+--
+
+/*!50001 DROP VIEW IF EXISTS `mostrar_permiso_usuario`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `mostrar_permiso_usuario` AS select `permiso_usuario`.`idPermiso_usuario` AS `idPermiso_usuario`,`permiso_usuario`.`id_permiso` AS `id_permiso`,`permiso_usuario`.`id_usuario` AS `id_usuario` from `permiso_usuario` where (`permiso_usuario`.`estado` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -270,4 +391,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-04 11:52:53
+-- Dump completed on 2024-07-05 10:13:35
