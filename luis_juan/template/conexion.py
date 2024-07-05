@@ -4,7 +4,7 @@ import mysql.connector
 # Establecer la conexión
 try:
     connection = mysql.connector.connect(
-        host="localhost", user="root", password="1234", database="agencia_anapedro"
+        host="localhost", user="root", password="1234", database="agencia_de_viaje_luis_edin_juan_romana"
     )
 
     if connection.is_connected():
@@ -21,4 +21,3 @@ finally:
         cursor.close()
         connection.close()
         print("La conexión a la base de datos se ha cerrado.")
-
