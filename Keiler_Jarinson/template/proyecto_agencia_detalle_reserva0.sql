@@ -24,14 +24,16 @@ DROP TABLE IF EXISTS `detalle_reserva`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detalle_reserva` (
   `iddetalle_reserva` int NOT NULL,
-  `id_reserva` int DEFAULT NULL,
-  `id_paquete_tour` int DEFAULT NULL,
-  `id_acomodacion` int DEFAULT NULL,
-  `id_adicion` int DEFAULT NULL,
+  `id_reserva` int NOT NULL,
+  `id_paquete_tour` int NOT NULL,
+  `id_acomodacion` int NOT NULL,
+  `id_adicion` int NOT NULL,
   `habitaciones` int NOT NULL,
   `adulto` int NOT NULL,
   `infante` int NOT NULL,
   `comentarios` varchar(500) NOT NULL,
+  `detalle_reservacol` varchar(45) NOT NULL,
+  `estado` tinyint NOT NULL,
   PRIMARY KEY (`iddetalle_reserva`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-05 11:14:25
+-- Dump completed on 2024-07-08  8:42:31
