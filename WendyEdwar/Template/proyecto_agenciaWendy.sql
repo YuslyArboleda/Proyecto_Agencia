@@ -28,7 +28,7 @@ CREATE TABLE `acomodacion` (
   `descripcion` varchar(300) NOT NULL,
   `estado_acomoda` tinyint NOT NULL,
   PRIMARY KEY (`id_acomodacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `acomodacion` (
 
 LOCK TABLES `acomodacion` WRITE;
 /*!40000 ALTER TABLE `acomodacion` DISABLE KEYS */;
-INSERT INTO `acomodacion` VALUES (1,'cama sencilla','cama sencilla para dos personas',1);
+INSERT INTO `acomodacion` VALUES (1,'cama sencilla','cama sencilla para dos personas',1),(2,'cuarto doble','dos camas de 100m',1),(3,'cuarto triple','tres camas dobles',0);
 /*!40000 ALTER TABLE `acomodacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +148,7 @@ CREATE TABLE `hospedaje_acomodacion` (
   KEY `id_hospedaje_idx` (`id_hospedaje`),
   CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_hospedaje` FOREIGN KEY (`id_hospedaje`) REFERENCES `hospedaje` (`idhospedaje`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `hospedaje_acomodacion` (
 
 LOCK TABLES `hospedaje_acomodacion` WRITE;
 /*!40000 ALTER TABLE `hospedaje_acomodacion` DISABLE KEYS */;
-INSERT INTO `hospedaje_acomodacion` VALUES (1,1,1,'alta',50000,30000,1);
+INSERT INTO `hospedaje_acomodacion` VALUES (1,3,1,'alta',400000,500000,1),(2,2,1,'baja',500000,700000,0);
 /*!40000 ALTER TABLE `hospedaje_acomodacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,25 +373,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_hotel_acomoda` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_hotel_acomoda`(in id_hotelacom int, in id_acomoda int, in id_hote int, in tempo varchar(20), in tari_age float, in tari float)
-BEGIN
-update hotel_acomodacion set id_acomodacion = id_hotelacom, id_hotel = id_hote, temporada = tempo, tarifa_agencia = tari_age, tarifa = tari where id_hotel_acomodacion = id_hotelacom;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `actualizar_paquete` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -525,25 +506,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_hotel_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_hotel_acomodacion`(in valor int)
-BEGIN
-select * from hotel_acomodacion where id_hotel_acomodacion = valor;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `buscar_paquete` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -633,25 +595,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_hospedaje_acomodacion`(in valor varchar(45))
 BEGIN
 select * from vista_hospedaje_acomodacion where Id like concat('%',valor,'%') || Acomodación like concat('%',valor,'%') || Hospedaje like concat('%',valor,'%') || Temporada like concat('%',valor,'%') || Tarifa_Agencia like concat('%',valor,'%') || tarifa like concat('%',valor,'%'); 
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_hotel_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_hotel_acomodacion`(in valor varchar(45))
-BEGIN
-select * from vista_hotel_acomodacion where id_hotel_acomodacion like concat('%',valor,'%') || Acomodacion like concat('%',valor,'%') || Hotel like concat('%',valor,'%') || Temporada like concat('%',valor,'%') || Tarifa_Agencia like concat('%',valor,'%') || tarifa like concat('%',valor,'%'); 
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -766,25 +709,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_hospe_acomodacion`(in id_hospe_acomoda int)
 BEGIN
 update hospedaje_acomodacion set estado_hospeacomo = '0' where id_hospedaje_acomodacion = id_hospe_acomoda;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_hotel_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_hotel_acomodacion`(in id_hotel_acomoda int)
-BEGIN
-update hotel_acomodacion set estado_hotelacomo = '0' where id_hotel_acomodacion = id_hotel_acomoda;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1019,25 +943,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `inst_hotel_acomoda` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_hotel_acomoda`(in acomoda int, in hospe int, in temp varchar(20), in tari_agen float, in tari float)
-BEGIN
-insert into hospedaje_acomodacion (id_acomodacion, id_hospedaje, temporada, tarifa_agencia, tarifa, estado_hospeacomo) values (acomoda, hospe, temp, tari_agen, tari, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Final view structure for view `paquete_vista`
@@ -1120,4 +1025,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-05 11:41:45
+-- Dump completed on 2024-07-08  8:55:26
