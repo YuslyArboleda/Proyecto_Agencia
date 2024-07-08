@@ -1,7 +1,7 @@
 # Proyecto_Agencia
 - pip install django
 - pip install mysqlclient
-- django-admin startproject <nombredelproyecto>
+- django-admin startproject <"nombredelproyecto">
 - cd <nombredelproyecto>
 - python manage.py startapp <nombredelaApp>
 - Realizar las migraciones y aplicar la base de datos
