@@ -55,7 +55,11 @@ CREATE TABLE `paquete` (
   `disponibilidad` varchar(50) NOT NULL,
   PRIMARY KEY (`id_paquete`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+<<<<<<< HEAD
+>>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
+=======
 >>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
+>>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +76,11 @@ UNLOCK TABLES;
 INSERT INTO `paquete` VALUES (6,1,1,'JOJOJOJO','WOMP-WOMP','2002-12-12','2022-12-12',101,101,1);
 =======
 INSERT INTO `paquete` VALUES (1,'johan','jojo','2002-12-12','2002-12-12',20,'todo','nada',2000,1,'disponible'),(7,'webin','ajaja','2020-03-03','2015-04-04',4,'todo','ada',3000,1,'disponible'),(8,'paquete','jejejj','2021-03-03','2023-03-03',5,'todo','nada',5000,1,'disponible');
+<<<<<<< HEAD
+>>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
+=======
 >>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
+>>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
 /*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +225,11 @@ DELIMITER ;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+<<<<<<< HEAD
+>>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
+=======
 >>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
+>>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -236,4 +248,8 @@ DELIMITER ;
 >>>>>>> b6994544081ec0db28b4585968fae1849c5c40dc
 =======
 -- Dump completed on 2024-07-04 11:38:18
+<<<<<<< HEAD
+>>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
+=======
 >>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
+>>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
