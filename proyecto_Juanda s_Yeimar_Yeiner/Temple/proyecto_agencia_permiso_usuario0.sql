@@ -16,19 +16,23 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `destino`
+-- Table structure for table `permiso_usuario`
 --
 
-DROP TABLE IF EXISTS `destino`;
+DROP TABLE IF EXISTS `permiso_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `destino` (
-  `id_Destino` int NOT NULL AUTO_INCREMENT,
-  `Departamento` varchar(50) NOT NULL,
-  `Ciudad` varchar(45) NOT NULL,
+CREATE TABLE `permiso_usuario` (
+  `idPermiso_usuario` int NOT NULL AUTO_INCREMENT,
+  `id_permiso` int NOT NULL,
+  `id_usua` int NOT NULL,
   `estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_Destino`)
-) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`idPermiso_usuario`),
+  KEY `id_usua_idx` (`id_usua`),
+  KEY `id_permiso_idx` (`id_permiso`),
+  CONSTRAINT `id_permiso` FOREIGN KEY (`id_permiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_usua` FOREIGN KEY (`id_usua`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -40,4 +44,4 @@ CREATE TABLE `destino` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 11:14:36
+-- Dump completed on 2024-07-09 11:36:16
