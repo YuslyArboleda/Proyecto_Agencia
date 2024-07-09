@@ -44,7 +44,6 @@ CREATE TABLE `paquete` (
 
 LOCK TABLES `paquete` WRITE;
 /*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-INSERT INTO `paquete` VALUES (1,'johan','jojo','2002-12-12','2002-12-12',20,'todo','nada',2000,1,'disponible'),(7,'webin','ajaja','2020-03-03','2015-04-04',4,'todo','ada',3000,1,'disponible'),(8,'paquete','jejejj','2021-03-03','2023-03-03',5,'todo','nada',5000,1,'disponible');
 /*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,6 +68,10 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `estado`,
  1 AS `disponibilidad`*/;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping events for database 'proyecto_agencia'
+--
 
 --
 -- Dumping routines for database 'proyecto_agencia'
@@ -196,4 +199,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-04 11:38:18
+-- Dump completed on 2024-07-09 10:00:55
