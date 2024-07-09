@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: agencia_wendy_edwar
+-- Host: 127.0.0.1    Database: proyecto_agencia
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -16,57 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `acomodacion`
+-- Table structure for table `hospedaje_acomodacion`
 --
 
-DROP TABLE IF EXISTS `acomodacion`;
+DROP TABLE IF EXISTS `hospedaje_acomodacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `acomodacion` (
-  `id_acomodacion` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(300) NOT NULL,
-  PRIMARY KEY (`id_acomodacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `acomodacion`
---
-
-LOCK TABLES `acomodacion` WRITE;
-/*!40000 ALTER TABLE `acomodacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `acomodacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hotel_acomodacion`
---
-
-DROP TABLE IF EXISTS `hotel_acomodacion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hotel_acomodacion` (
-  `id_hotel_acomodacion` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hospedaje_acomodacion` (
+  `id_hospedaje_acomodacion` int NOT NULL AUTO_INCREMENT,
   `id_acomodacion` int NOT NULL,
-  `id_hotel` int NOT NULL,
+  `id_hospedaje` int NOT NULL,
   `temporada` varchar(20) NOT NULL,
   `tarifa_agencia` float NOT NULL,
   `tarifa` float NOT NULL,
-  `numero_personas` int NOT NULL,
-  PRIMARY KEY (`id_hotel_acomodacion`),
+  `estado_hospeacomo` tinyint NOT NULL,
+  PRIMARY KEY (`id_hospedaje_acomodacion`),
   KEY `id_acomodacion_idx` (`id_acomodacion`),
-  CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `id_hospedaje_idx` (`id_hospedaje`),
+  CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_hospedaje` FOREIGN KEY (`id_hospedaje`) REFERENCES `hospedaje` (`idhospedaje`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hotel_acomodacion`
+-- Dumping data for table `hospedaje_acomodacion`
 --
 
-LOCK TABLES `hotel_acomodacion` WRITE;
-/*!40000 ALTER TABLE `hotel_acomodacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hotel_acomodacion` ENABLE KEYS */;
+LOCK TABLES `hospedaje_acomodacion` WRITE;
+/*!40000 ALTER TABLE `hospedaje_acomodacion` DISABLE KEYS */;
+INSERT INTO `hospedaje_acomodacion` VALUES (1,3,1,'alta',400000,500000,1),(2,2,1,'baja',500000,700000,0);
+/*!40000 ALTER TABLE `hospedaje_acomodacion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -78,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02 11:22:46
+-- Dump completed on 2024-07-09  8:36:40

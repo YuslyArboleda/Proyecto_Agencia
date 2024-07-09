@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: proyecto_agencia
+-- Host: 127.0.0.1    Database: proyecto_agencia
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `destino`
+-- Table structure for table `paquete_tour`
 --
 
-DROP TABLE IF EXISTS `destino`;
+DROP TABLE IF EXISTS `paquete_tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `destino` (
-  `id_Destino` int NOT NULL AUTO_INCREMENT,
-  `Depto` varchar(50) NOT NULL,
-  `Ciudad` varchar(45) NOT NULL,
-  PRIMARY KEY (`id_Destino`)
+CREATE TABLE `paquete_tour` (
+  `idPaquete_tour` int NOT NULL AUTO_INCREMENT,
+  `id_tour` int NOT NULL,
+  `id_paquete` int NOT NULL,
+  `condicionon` tinyint NOT NULL,
+  PRIMARY KEY (`idPaquete_tour`),
+  KEY `paquete_idx` (`id_paquete`),
+  CONSTRAINT `paquete` FOREIGN KEY (`id_paquete`) REFERENCES `paquete` (`idPaquete`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `destino`
+-- Dumping data for table `paquete_tour`
 --
 
-LOCK TABLES `destino` WRITE;
-/*!40000 ALTER TABLE `destino` DISABLE KEYS */;
-/*!40000 ALTER TABLE `destino` ENABLE KEYS */;
+LOCK TABLES `paquete_tour` WRITE;
+/*!40000 ALTER TABLE `paquete_tour` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paquete_tour` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02 11:42:20
+-- Dump completed on 2024-07-09  8:36:39
