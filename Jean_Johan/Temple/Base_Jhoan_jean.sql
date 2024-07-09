@@ -23,25 +23,6 @@ DROP TABLE IF EXISTS `paquete`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paquete` (
-<<<<<<< HEAD
-  `idPaquete` int NOT NULL AUTO_INCREMENT,
-  `id_hotel` int NOT NULL,
-  `id_destino` int NOT NULL,
-  `Nombre` varchar(100) NOT NULL,
-  `Descripcion` varchar(350) NOT NULL,
-  `Fecha_inicio` date NOT NULL,
-  `Fecha_fin` date NOT NULL,
-  `Costo` int NOT NULL,
-  `Noche_Estadia` int NOT NULL,
-<<<<<<< HEAD
-  PRIMARY KEY (`idPaquete`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-=======
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`idPaquete`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
->>>>>>> b6994544081ec0db28b4585968fae1849c5c40dc
-=======
   `id_paquete` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
@@ -55,11 +36,6 @@ CREATE TABLE `paquete` (
   `disponibilidad` varchar(50) NOT NULL,
   PRIMARY KEY (`id_paquete`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-<<<<<<< HEAD
->>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
-=======
->>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
->>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,22 +44,6 @@ CREATE TABLE `paquete` (
 
 LOCK TABLES `paquete` WRITE;
 /*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
-UNLOCK TABLES;
-=======
-INSERT INTO `paquete` VALUES (6,1,1,'JOJOJOJO','WOMP-WOMP','2002-12-12','2022-12-12',101,101,1);
-=======
-INSERT INTO `paquete` VALUES (1,'johan','jojo','2002-12-12','2002-12-12',20,'todo','nada',2000,1,'disponible'),(7,'webin','ajaja','2020-03-03','2015-04-04',4,'todo','ada',3000,1,'disponible'),(8,'paquete','jejejj','2021-03-03','2023-03-03',5,'todo','nada',5000,1,'disponible');
-<<<<<<< HEAD
->>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
-=======
->>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
->>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
->>>>>>> 4db751e332b0eee0f2799b98691661684285ca93
 /*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,9 +171,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-<<<<<<< HEAD
->>>>>>> b6994544081ec0db28b4585968fae1849c5c40dc
-=======
 
 --
 -- Final view structure for view `paquete_vista`
@@ -232,11 +189,6 @@ DELIMITER ;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
-<<<<<<< HEAD
->>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
-=======
->>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
->>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -247,20 +199,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2024-07-09 10:00:55
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
--- Dump completed on 2024-07-02 11:35:19
-=======
--- Dump completed on 2024-07-03 10:23:55
->>>>>>> b6994544081ec0db28b4585968fae1849c5c40dc
-=======
--- Dump completed on 2024-07-04 11:38:18
-<<<<<<< HEAD
->>>>>>> e435fee6b45242dcf187125c2c4fa4ea9c4faf09
-=======
->>>>>>> cb0368409de57ff031d6e85839527086ecd03e47
->>>>>>> bf3463a37c0c31b9bc93a512cbf0ea29a9e616fa
->>>>>>> 4db751e332b0eee0f2799b98691661684285ca93
+-- Dump completed on 2024-07-09 10:58:09
