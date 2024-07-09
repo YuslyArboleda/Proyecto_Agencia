@@ -16,38 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `paquete`
---
-
-DROP TABLE IF EXISTS `paquete`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `paquete` (
-  `id_paquete` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `vigencia_inicio` date NOT NULL,
-  `vigencia_fin` date NOT NULL,
-  `noche` int NOT NULL,
-  `incluye` varchar(200) NOT NULL,
-  `no_incluye` varchar(200) NOT NULL,
-  `costo` float NOT NULL,
-  `estado` tinyint NOT NULL,
-  `disponibilidad` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_paquete`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `paquete`
---
-
-LOCK TABLES `paquete` WRITE;
-/*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-/*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Temporary view structure for view `paquete_vista`
 --
 
@@ -70,8 +38,22 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
--- Dumping events for database 'proyecto_agencia'
+-- Final view structure for view `paquete_vista`
 --
+
+/*!50001 DROP VIEW IF EXISTS `paquete_vista`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `paquete_vista` AS select `paquete`.`id_paquete` AS `id_paquete`,`paquete`.`nombre` AS `nombre`,`paquete`.`descripcion` AS `descripcion`,`paquete`.`vigencia_inicio` AS `vigencia_inicio`,`paquete`.`vigencia_fin` AS `vigencia_fin`,`paquete`.`noche` AS `noche`,`paquete`.`incluye` AS `incluye`,`paquete`.`no_incluye` AS `no_incluye`,`paquete`.`costo` AS `costo`,`paquete`.`estado` AS `estado`,`paquete`.`disponibilidad` AS `disponibilidad` from `paquete` where (`paquete`.`estado` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
 -- Dumping routines for database 'proyecto_agencia'
@@ -171,24 +153,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Final view structure for view `paquete_vista`
---
-
-/*!50001 DROP VIEW IF EXISTS `paquete_vista`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `paquete_vista` AS select `paquete`.`id_paquete` AS `id_paquete`,`paquete`.`nombre` AS `nombre`,`paquete`.`descripcion` AS `descripcion`,`paquete`.`vigencia_inicio` AS `vigencia_inicio`,`paquete`.`vigencia_fin` AS `vigencia_fin`,`paquete`.`noche` AS `noche`,`paquete`.`incluye` AS `incluye`,`paquete`.`no_incluye` AS `no_incluye`,`paquete`.`costo` AS `costo`,`paquete`.`estado` AS `estado`,`paquete`.`disponibilidad` AS `disponibilidad` from `paquete` where (`paquete`.`estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -199,4 +163,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 10:58:09
+-- Dump completed on 2024-07-09 11:19:17
