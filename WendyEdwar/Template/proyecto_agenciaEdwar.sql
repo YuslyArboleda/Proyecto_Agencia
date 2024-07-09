@@ -22,6 +22,22 @@
 DROP TABLE IF EXISTS `adicion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
+<<<<<<< HEAD:proyecto_Juanda s_Yeimar_Yeiner/Temple/proyecto_agencia_destino.sql
+CREATE TABLE `destino` (
+  `id_Destino` int NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
+  `Depto` varchar(50) NOT NULL,
+  `Ciudad` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_Destino`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
+  `Departamento` varchar(50) NOT NULL,
+  `Ciudad` varchar(45) NOT NULL,
+  `estado` tinyint NOT NULL,
+  PRIMARY KEY (`id_Destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> b6994544081ec0db28b4585968fae1849c5c40dc
+=======
 CREATE TABLE `adicion` (
   `id_Adicion` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(20) NOT NULL,
@@ -30,16 +46,28 @@ CREATE TABLE `adicion` (
   `Estado` tinyint NOT NULL,
   PRIMARY KEY (`id_Adicion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> cb0368409de57ff031d6e85839527086ecd03e47:WendyEdwar/Template/proyecto_agenciaEdwar.sql
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `adicion`
 --
 
+<<<<<<< HEAD:proyecto_Juanda s_Yeimar_Yeiner/Temple/proyecto_agencia_destino.sql
+LOCK TABLES `destino` WRITE;
+/*!40000 ALTER TABLE `destino` DISABLE KEYS */;
+<<<<<<< HEAD
+/*!40000 ALTER TABLE `destino` ENABLE KEYS */;
+UNLOCK TABLES;
+=======
+INSERT INTO `destino` VALUES (123,'bogota','choco',1),(99999,'adad','dadad',0);
+/*!40000 ALTER TABLE `destino` ENABLE KEYS */;
+=======
 LOCK TABLES `adicion` WRITE;
 /*!40000 ALTER TABLE `adicion` DISABLE KEYS */;
 INSERT INTO `adicion` VALUES (1,'edwar','lindo',30000,0),(2,'edw','guapo',4000000,1);
 /*!40000 ALTER TABLE `adicion` ENABLE KEYS */;
+>>>>>>> cb0368409de57ff031d6e85839527086ecd03e47:WendyEdwar/Template/proyecto_agenciaEdwar.sql
 UNLOCK TABLES;
 
 --
@@ -139,6 +167,9 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+<<<<<<< HEAD:proyecto_Juanda s_Yeimar_Yeiner/Temple/proyecto_agencia_destino.sql
+>>>>>>> b6994544081ec0db28b4585968fae1849c5c40dc
+=======
 /*!50003 DROP PROCEDURE IF EXISTS `insertar_adicion` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -176,6 +207,7 @@ DELIMITER ;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+>>>>>>> cb0368409de57ff031d6e85839527086ecd03e47:WendyEdwar/Template/proyecto_agenciaEdwar.sql
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -186,4 +218,12 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD:proyecto_Juanda s_Yeimar_Yeiner/Temple/proyecto_agencia_destino.sql
+<<<<<<< HEAD
+-- Dump completed on 2024-07-02 11:42:20
+=======
+-- Dump completed on 2024-07-03 11:00:14
+>>>>>>> b6994544081ec0db28b4585968fae1849c5c40dc
+=======
 -- Dump completed on 2024-07-08  9:22:15
+>>>>>>> cb0368409de57ff031d6e85839527086ecd03e47:WendyEdwar/Template/proyecto_agenciaEdwar.sql
