@@ -16,34 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cliente`
---
-
-DROP TABLE IF EXISTS `cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cliente` (
-  `idcliente` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(45) NOT NULL,
-  `Telefono` varchar(45) NOT NULL,
-  `Correo` varchar(45) NOT NULL,
-  `Direccion` varchar(45) NOT NULL,
-  `Cantidad` varchar(45) NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cliente`
---
-
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Temporary view structure for view `vista_cliente`
 --
 
@@ -59,6 +31,24 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Direccion`,
  1 AS `Cantidad`*/;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `vista_cliente`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vista_cliente`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_cliente` AS select `cliente`.`idcliente` AS `idcliente`,`cliente`.`Nombre` AS `Nombre`,`cliente`.`Telefono` AS `Telefono`,`cliente`.`Correo` AS `Correo`,`cliente`.`Direccion` AS `Direccion`,`cliente`.`Cantidad` AS `Cantidad` from `cliente` where (`cliente`.`Estado` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
 -- Dumping routines for database 'proyecto_agencia'
@@ -158,24 +148,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Final view structure for view `vista_cliente`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_cliente`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_cliente` AS select `cliente`.`idcliente` AS `idcliente`,`cliente`.`Nombre` AS `Nombre`,`cliente`.`Telefono` AS `Telefono`,`cliente`.`Correo` AS `Correo`,`cliente`.`Direccion` AS `Direccion`,`cliente`.`Cantidad` AS `Cantidad` from `cliente` where (`cliente`.`Estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -186,4 +158,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 10:06:30
+-- Dump completed on 2024-07-09 11:23:51
