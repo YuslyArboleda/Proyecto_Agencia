@@ -38,7 +38,6 @@ CREATE TABLE `adicion` (
 
 LOCK TABLES `adicion` WRITE;
 /*!40000 ALTER TABLE `adicion` DISABLE KEYS */;
-INSERT INTO `adicion` VALUES (1,'edwar','lindo',30000,0),(2,'edw','guapo',4000000,1);
 /*!40000 ALTER TABLE `adicion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,4 +185,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08  9:22:15
+-- Dump completed on 2024-07-09 10:09:13
