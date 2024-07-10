@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: proyecto_agencia
+-- Host: localhost    Database: proyecto_agencia
 -- ------------------------------------------------------
--- Server version	8.1.0
+-- Server version	8.2.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,31 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `paquete_tour`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `paquete_tour`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `paquete_tour` (
-  `idPaquete_tour` int NOT NULL AUTO_INCREMENT,
-  `id_tour` int NOT NULL,
-  `id_paquete` int NOT NULL,
-  `condicionon` tinyint NOT NULL,
-  PRIMARY KEY (`idPaquete_tour`),
-  KEY `paquete_idx` (`id_paquete`),
-  CONSTRAINT `paquete` FOREIGN KEY (`id_paquete`) REFERENCES `paquete` (`idPaquete`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `usuario` (
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `tipo_doc` varchar(20) NOT NULL,
+  `documento` varchar(20) NOT NULL,
+  `correo` varchar(200) NOT NULL,
+  `sexo` int NOT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `rol` int NOT NULL,
+  `login` varchar(30) NOT NULL,
+  `clave` varchar(40) NOT NULL,
+  `fecha_creacion` date NOT NULL,
+  `estado` tinyint NOT NULL,
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `paquete_tour`
---
-
-LOCK TABLES `paquete_tour` WRITE;
-/*!40000 ALTER TABLE `paquete_tour` DISABLE KEYS */;
-/*!40000 ALTER TABLE `paquete_tour` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -51,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09  8:36:39
+-- Dump completed on 2024-07-10  8:28:19

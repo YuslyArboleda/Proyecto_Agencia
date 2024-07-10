@@ -16,33 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cliente`
+-- Table structure for table `detalle_reserva`
 --
 
-DROP TABLE IF EXISTS `cliente`;
+DROP TABLE IF EXISTS `detalle_reserva`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cliente` (
-  `idcliente` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(45) NOT NULL,
-  `Telefono` varchar(45) NOT NULL,
-  `Correo` varchar(45) NOT NULL,
-  `Direccion` varchar(45) NOT NULL,
-  `Cantidad` varchar(45) NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `detalle_reserva` (
+  `id_detalle_reserva` int NOT NULL,
+  `id_reserva` int NOT NULL,
+  `id_paquete_tour` int DEFAULT NULL,
+  `id_acomodacion` int DEFAULT NULL,
+  `id_adicion` int DEFAULT NULL,
+  `habitaciones` int NOT NULL,
+  `adulto` int NOT NULL,
+  `infante` int NOT NULL,
+  `comentarios` varchar(500) NOT NULL,
+  `estado` tinyint NOT NULL,
+  PRIMARY KEY (`id_detalle_reserva`),
+  KEY `id_reserva_idx` (`id_reserva`),
+  KEY `id_paquete_tour_idx` (`id_paquete_tour`),
+  KEY `id_acomodacion_idx` (`id_acomodacion`),
+  KEY `id_adicion_idx` (`id_adicion`),
+  CONSTRAINT `id_acomoda` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_adicion` FOREIGN KEY (`id_adicion`) REFERENCES `adicion` (`id_Adicion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_paquete_tour` FOREIGN KEY (`id_paquete_tour`) REFERENCES `paquete_tour` (`idPaquete_tour`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_reserva` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`idReserva`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cliente`
---
-
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'jojo','jojo','jojo','jojo','jojo',1),(2,'Peterlouis32','3232','3232','32','232',1);
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09  8:36:39
+-- Dump completed on 2024-07-09 11:35:48

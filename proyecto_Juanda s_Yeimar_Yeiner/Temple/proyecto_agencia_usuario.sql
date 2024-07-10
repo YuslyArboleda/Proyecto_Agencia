@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: proyecto_agencia
+-- Host: localhost    Database: proyecto_agencia
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -16,37 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `reserva`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `reserva`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `reserva` (
-  `idReserva` int NOT NULL AUTO_INCREMENT,
-  `Fecha` date NOT NULL,
-  `Fecha_inicio` date NOT NULL,
-  `Fecha_fin` date NOT NULL,
-  `Cantidad` int NOT NULL,
-  `Total` float NOT NULL,
-  `Estado_reserva` varchar(25) NOT NULL,
-  `Metodo_pago` varchar(25) NOT NULL,
-  `id_usuario` int NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idReserva`),
-  KEY `id_usuario_idx` (`id_usuario`),
-  KEY `idReserva_idx` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `usuario` (
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `documento` varchar(20) NOT NULL,
+  `tipo_doc` varchar(20) NOT NULL,
+  `correo` varchar(200) NOT NULL,
+  `sexo` int NOT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `rol` int NOT NULL,
+  `login` varchar(30) NOT NULL,
+  `clave` varchar(40) NOT NULL,
+  `estado` tinyint NOT NULL,
+  `fecha_creacion` date NOT NULL,
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reserva`
---
-
-LOCK TABLES `reserva` WRITE;
-/*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -57,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09  8:36:42
+-- Dump completed on 2024-07-09 11:14:36
