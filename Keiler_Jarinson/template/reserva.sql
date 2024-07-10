@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: localhost    Database: proyecto_agencia
+-- Host: 127.0.0.1    Database: proyecto_agencia
 -- ------------------------------------------------------
--- Server version	8.1.0
+-- Server version	9.0.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,34 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `paquete`
+-- Table structure for table `reserva`
 --
 
-DROP TABLE IF EXISTS `paquete`;
+DROP TABLE IF EXISTS `reserva`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `paquete` (
-  `idPaquete` int NOT NULL AUTO_INCREMENT,
-  `id_hotel` int NOT NULL,
-  `id_destino` int NOT NULL,
-  `Nombre` varchar(100) NOT NULL,
-  `Descripcion` varchar(350) NOT NULL,
+CREATE TABLE `reserva` (
+  `idReserva` int NOT NULL AUTO_INCREMENT,
+  `id_usuar` int NOT NULL,
+  `Fecha` date NOT NULL,
   `Fecha_inicio` date NOT NULL,
   `Fecha_fin` date NOT NULL,
-  `Costo` int NOT NULL,
-  `Noche_Estadia` int NOT NULL,
-  PRIMARY KEY (`idPaquete`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Cantidad` int NOT NULL,
+  `Total` float NOT NULL,
+  `Estado_reserva` varchar(25) NOT NULL,
+  `Metodo_pago` varchar(25) NOT NULL,
+  `Estado` tinyint NOT NULL,
+  PRIMARY KEY (`idReserva`),
+  KEY `id_usuario_idx` (`id_usuar`),
+  KEY `idReserva_idx` (`id_usuar`),
+  CONSTRAINT `id_usuar` FOREIGN KEY (`id_usuar`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `paquete`
---
-
-LOCK TABLES `paquete` WRITE;
-/*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-/*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -54,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02 11:19:08
+-- Dump completed on 2024-07-10 11:07:50
