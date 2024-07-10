@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: proyecto_agencia
+-- Host: localhost    Database: proyecto_agencia
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -16,37 +16,20 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `reserva`
+-- Table structure for table `acomodacion`
 --
 
-DROP TABLE IF EXISTS `reserva`;
+DROP TABLE IF EXISTS `acomodacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `reserva` (
-  `idReserva` int NOT NULL AUTO_INCREMENT,
-  `Fecha` date NOT NULL,
-  `Fecha_inicio` date NOT NULL,
-  `Fecha_fin` date NOT NULL,
-  `Cantidad` int NOT NULL,
-  `Total` float NOT NULL,
-  `Estado_reserva` varchar(25) NOT NULL,
-  `Metodo_pago` varchar(25) NOT NULL,
-  `id_usuario` int NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idReserva`),
-  KEY `id_usuario_idx` (`id_usuario`),
-  KEY `idReserva_idx` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `acomodacion` (
+  `id_acomodacion` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(300) NOT NULL,
+  `estado_acomoda` tinyint NOT NULL,
+  PRIMARY KEY (`id_acomodacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reserva`
---
-
-LOCK TABLES `reserva` WRITE;
-/*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -57,4 +40,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09  8:36:42
+-- Dump completed on 2024-07-10  8:25:37

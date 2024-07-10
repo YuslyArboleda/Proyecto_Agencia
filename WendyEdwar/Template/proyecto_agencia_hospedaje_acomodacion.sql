@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: proyecto_agencia
+-- Host: localhost    Database: proyecto_agencia
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -16,30 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `permiso_usuario`
+-- Table structure for table `hospedaje_acomodacion`
 --
 
-DROP TABLE IF EXISTS `permiso_usuario`;
+DROP TABLE IF EXISTS `hospedaje_acomodacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `permiso_usuario` (
-  `idPermiso_usuario` int NOT NULL AUTO_INCREMENT,
-  `id_permiso` int NOT NULL,
-  `id_usuario` int NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`idPermiso_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `hospedaje_acomodacion` (
+  `id_hospedaje_acomodacion` int NOT NULL AUTO_INCREMENT,
+  `id_acomodacion` int NOT NULL,
+  `id_hospedaje` int NOT NULL,
+  `temporada` varchar(20) NOT NULL,
+  `tarifa_agencia` float NOT NULL,
+  `tarifa` float NOT NULL,
+  `estado_hospeacomo` tinyint NOT NULL,
+  PRIMARY KEY (`id_hospedaje_acomodacion`),
+  KEY `id_acomodacion_idx` (`id_acomodacion`),
+  KEY `id_hospedaje_idx` (`id_hospedaje`),
+  CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_hospedaje` FOREIGN KEY (`id_hospedaje`) REFERENCES `hospedaje` (`idhospedaje`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `permiso_usuario`
---
-
-LOCK TABLES `permiso_usuario` WRITE;
-/*!40000 ALTER TABLE `permiso_usuario` DISABLE KEYS */;
-INSERT INTO `permiso_usuario` VALUES (123,1234,12345,1),(1234,12345,123456,0);
-/*!40000 ALTER TABLE `permiso_usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -50,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09  8:36:39
+-- Dump completed on 2024-07-10  8:25:38

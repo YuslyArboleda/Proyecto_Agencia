@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: proyecto_agencia
+-- Host: localhost    Database: proyecto_agencia
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -16,36 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `hospedaje_acomodacion`
+-- Table structure for table `paquete`
 --
 
-DROP TABLE IF EXISTS `hospedaje_acomodacion`;
+DROP TABLE IF EXISTS `paquete`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hospedaje_acomodacion` (
-  `id_hospedaje_acomodacion` int NOT NULL AUTO_INCREMENT,
-  `id_acomodacion` int NOT NULL,
-  `id_hospedaje` int NOT NULL,
-  `temporada` varchar(20) NOT NULL,
-  `tarifa_agencia` float NOT NULL,
-  `tarifa` float NOT NULL,
-  `estado_hospeacomo` tinyint NOT NULL,
-  PRIMARY KEY (`id_hospedaje_acomodacion`),
-  KEY `id_acomodacion_idx` (`id_acomodacion`),
-  KEY `id_hospedaje_idx` (`id_hospedaje`),
-  CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_hospedaje` FOREIGN KEY (`id_hospedaje`) REFERENCES `hospedaje` (`idhospedaje`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `paquete` (
+  `id_paquete` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `vigencia_inicio` date NOT NULL,
+  `vigencia_fin` date NOT NULL,
+  `noche` int NOT NULL,
+  `incluye` varchar(200) NOT NULL,
+  `no_incluye` varchar(200) NOT NULL,
+  `costo` float NOT NULL,
+  `estado` tinyint NOT NULL,
+  `disponibilidad` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_paquete`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hospedaje_acomodacion`
+-- Dumping data for table `paquete`
 --
 
-LOCK TABLES `hospedaje_acomodacion` WRITE;
-/*!40000 ALTER TABLE `hospedaje_acomodacion` DISABLE KEYS */;
-INSERT INTO `hospedaje_acomodacion` VALUES (1,3,1,'alta',400000,500000,1),(2,2,1,'baja',500000,700000,0);
-/*!40000 ALTER TABLE `hospedaje_acomodacion` ENABLE KEYS */;
+LOCK TABLES `paquete` WRITE;
+/*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09  8:36:40
+-- Dump completed on 2024-07-09 11:19:16

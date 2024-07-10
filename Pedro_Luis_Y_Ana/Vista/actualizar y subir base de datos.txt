@@ -1,0 +1,85 @@
+actualizamos la base de datos, emparejamos con la de la profesora, tragimos las base de adot de mis compañeros y ademas hicimos el pull recuer en gihass
+
+
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Keiler_Jarinson/modelo/Base De Datos.sql
+        modified:   Pedro_Luis_Y_Ana/Temple/Base_De_Datos.sql
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git add .
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   Pedro_Luis_Y_Ana/Temple/Base_De_Datos.sql
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Keiler_Jarinson/modelo/Base De Datos.sql
+
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git remote -v
+origin  https://github.com/pedroluiscordoba/Proyecto_Agencia_AnayPedro.git (fetch)
+origin  https://github.com/pedroluiscordoba/Proyecto_Agencia_AnayPedro.git (push)
+upstream        https://github.com/YuslyArboleda/Proyecto_Agencia.git (fetch)
+upstream        https://github.com/YuslyArboleda/Proyecto_Agencia.git (push)
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git fetch upstream
+remote: Enumerating objects: 258, done.
+remote: Counting objects: 100% (162/162), done.
+remote: Compressing objects: 100% (79/79), done.
+remote: Total 258 (delta 98), reused 125 (delta 81), pack-reused 96
+Receiving objects: 100% (258/258), 60.44 KiB | 631.00 KiB/s, done.
+Resolving deltas: 100% (121/121), completed with 15 local objects.
+From https://github.com/YuslyArboleda/Proyecto_Agencia
+   cd0294a..4db751e  main       -> upstream/main
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git pull upstream
+You asked to pull from the remote 'upstream', but did not specify
+a branch. Because this is not the default configured remote
+for your current branch, you must specify a branch on the command line.
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git pull upstream main
+From https://github.com/YuslyArboleda/Proyecto_Agencia
+ * branch            main       -> FETCH_HEAD
+Updating f2ab652..4db751e
+error: Your local changes to the following files would be overwritten by merge:
+        Keiler_Jarinson/modelo/Base De Datos.sql
+Please commit your changes or stash them before you merge.
+Aborting
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git commit -m "Base de datos actualizada pedro ana"
+[main 5925ed8] Base de datos actualizada pedro ana
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ git push origin main
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 521 bytes | 260.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/pedroluiscordoba/Proyecto_Agencia_AnayPedro.git
+   f2ab652..5925ed8  main -> main
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$ ^C
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (main)
+$
