@@ -48,43 +48,6 @@ LOCK TABLES `tour` WRITE;
 INSERT INTO `tour` VALUES (10,123,'C',14500.00,'2024-10-10','2024-10-12','dadjfadskj',10);
 /*!40000 ALTER TABLE `tour` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Temporary view structure for view `vista_tour`
---
-
-DROP TABLE IF EXISTS `vista_tour`;
-/*!50001 DROP VIEW IF EXISTS `vista_tour`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_tour` AS SELECT 
- 1 AS `id_tour`,
- 1 AS `nombre_tour`,
- 1 AS `valor`,
- 1 AS `fecha_de_inicio`,
- 1 AS `fecha_final`,
- 1 AS `descripcion`,
- 1 AS `disponibilidad`,
- 1 AS `Ciudad`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Final view structure for view `vista_tour`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_tour`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_tour` AS select `t`.`id_tour` AS `id_tour`,`t`.`nombre_tour` AS `nombre_tour`,`t`.`valor` AS `valor`,`t`.`fecha_de_inicio` AS `fecha_de_inicio`,`t`.`fecha_final` AS `fecha_final`,`t`.`descripcion` AS `descripcion`,`t`.`disponibilidad` AS `disponibilidad`,`d`.`Ciudad` AS `Ciudad` from (`tour` `t` join `destino` `d` on((`t`.`id_destino` = `d`.`id_Destino`))) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -95,4 +58,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-10  8:53:43
+-- Dump completed on 2024-07-10  9:09:06
