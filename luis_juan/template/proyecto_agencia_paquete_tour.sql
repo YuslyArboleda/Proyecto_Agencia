@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: proyecto_agencia
 -- ------------------------------------------------------
--- Server version	8.1.0
+-- Server version	8.2.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,37 +16,24 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `paquete_tour`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `paquete_tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario` (
-  `id_Usuario` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) NOT NULL,
-  `tipo_docu` varchar(20) NOT NULL,
-  `documento` varchar(20) NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `correo` varchar(200) NOT NULL,
-  `sexo` int NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `rol` int NOT NULL,
-  `login` varchar(30) NOT NULL,
-  `clave` varchar(40) NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_Usuario`)
+CREATE TABLE `paquete_tour` (
+  `idPaquete_tour` int NOT NULL AUTO_INCREMENT,
+  `id_tour` int NOT NULL,
+  `id_paquete` int NOT NULL,
+  `condicion` tinyint NOT NULL,
+  PRIMARY KEY (`idPaquete_tour`),
+  KEY `paquete_idx` (`id_paquete`),
+  KEY `tour_idx` (`id_tour`),
+  CONSTRAINT `paquete` FOREIGN KEY (`id_paquete`) REFERENCES `paquete` (`id_paquete`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tour` FOREIGN KEY (`id_tour`) REFERENCES `tour` (`id_tour`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -57,4 +44,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02 11:41:20
+-- Dump completed on 2024-07-09 12:06:40
