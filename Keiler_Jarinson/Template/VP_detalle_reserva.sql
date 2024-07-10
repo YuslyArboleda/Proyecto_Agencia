@@ -54,6 +54,10 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Dumping events for database 'proyecto_agencia'
+--
+
+--
 -- Dumping routines for database 'proyecto_agencia'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `actualizar_detalle_reser` */;
@@ -144,8 +148,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_detalle_reserva`(in id_detalle_rese int, in id_reser int, in id_paque_tour int, in id_acomoda int, in id_adici int, in habitacon int, in adul int, in infan int, in comentario varchar(500))
 BEGIN
-insert into detalle_reserva (id_detalle_reser,id_reser,id_paque_tour,id_acomoda,id_adici,habitacon,adul,infan,comentario)
-values (deta_reser, reser, paque_tour, acomoda, adici, habita, adul, infan, comenta, '1');
+insert into detalle_reserva (id_detalle_reserva,id_reserva,id_paquete_tour,id_acomodacion,id_adicion,habitaciones,adulto,infante,comentarios, estado)
+values (id_detalle_rese, id_reser, id_paque_tour, id_acomoda, id_adici, habitacon, adul, infan, comentario, '1');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -162,4 +166,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 11:35:48
+-- Dump completed on 2024-07-10 10:35:35
