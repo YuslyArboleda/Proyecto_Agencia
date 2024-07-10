@@ -16,18 +16,19 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `permiso`
+-- Table structure for table `destino`
 --
 
-DROP TABLE IF EXISTS `permiso`;
+DROP TABLE IF EXISTS `destino`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `permiso` (
-  `idpermiso` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(50) NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idpermiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=9877 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `destino` (
+  `id_Destino` int NOT NULL AUTO_INCREMENT,
+  `Departamento` varchar(50) NOT NULL,
+  `Ciudad` varchar(45) NOT NULL,
+  `estado` tinyint NOT NULL,
+  PRIMARY KEY (`id_Destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -39,4 +40,4 @@ CREATE TABLE `permiso` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 11:14:37
+-- Dump completed on 2024-07-10  8:44:22

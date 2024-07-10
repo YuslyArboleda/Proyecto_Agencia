@@ -16,27 +16,19 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `destino`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `destino`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario` (
-  `idUsuario` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) NOT NULL,
-  `documento` varchar(20) NOT NULL,
-  `tipo_doc` varchar(20) NOT NULL,
-  `correo` varchar(200) NOT NULL,
-  `sexo` int NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `rol` int NOT NULL,
-  `login` varchar(30) NOT NULL,
-  `clave` varchar(40) NOT NULL,
+CREATE TABLE `destino` (
+  `id_Destino` int NOT NULL AUTO_INCREMENT,
+  `Departamento` varchar(50) NOT NULL,
+  `Ciudad` varchar(45) NOT NULL,
   `estado` tinyint NOT NULL,
-  `fecha_creacion` date NOT NULL,
-  PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id_Destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +40,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 11:14:36
+-- Dump completed on 2024-07-09 11:49:24
