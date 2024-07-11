@@ -16,37 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `hospedaje_acomodacion`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `hospedaje_acomodacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario` (
-  `id_Usuario` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) NOT NULL,
-  `tipo_docu` varchar(20) NOT NULL,
-  `documento` varchar(20) NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `correo` varchar(200) NOT NULL,
-  `sexo` int NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `rol` int NOT NULL,
-  `login` varchar(30) NOT NULL,
-  `clave` varchar(40) NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `hospedaje_acomodacion` (
+  `id_hospedaje_acomodacion` int NOT NULL AUTO_INCREMENT,
+  `id_acomodacion` int NOT NULL,
+  `id_hospedaje` int NOT NULL,
+  `temporada` varchar(20) NOT NULL,
+  `tarifa_agencia` float NOT NULL,
+  `tarifa` float NOT NULL,
+  `estado_hospeacomo` tinyint NOT NULL,
+  PRIMARY KEY (`id_hospedaje_acomodacion`),
+  KEY `id_acomodacion_idx` (`id_acomodacion`),
+  KEY `id_hospedaje_idx` (`id_hospedaje`),
+  CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_hospedaje` FOREIGN KEY (`id_hospedaje`) REFERENCES `hospedaje` (`idhospedaje`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -57,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02 11:41:20
+-- Dump completed on 2024-07-10  8:25:38

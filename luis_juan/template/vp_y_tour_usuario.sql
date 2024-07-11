@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: proyecto_agencia
 -- ------------------------------------------------------
--- Server version	8.1.0
+-- Server version	8.2.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,96 +16,83 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `destino`
+-- Temporary view structure for view `vista_usuario`
 --
 
-DROP TABLE IF EXISTS `destino`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+DROP TABLE IF EXISTS `vista_usuario`;
+/*!50001 DROP VIEW IF EXISTS `vista_usuario`*/;
+SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `destino` (
-  `id_Destino` int NOT NULL AUTO_INCREMENT,
-  `Departamento` varchar(50) NOT NULL,
-  `Ciudad` varchar(45) NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_Destino`)
-) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50001 CREATE VIEW `vista_usuario` AS SELECT 
+ 1 AS `idUsuario`,
+ 1 AS `nombre`,
+ 1 AS `tipo_doc`,
+ 1 AS `documento`,
+ 1 AS `correo`,
+ 1 AS `sexo`,
+ 1 AS `direccion`,
+ 1 AS `rol`,
+ 1 AS `login`,
+ 1 AS `clave`,
+ 1 AS `fecha_creacion`,
+ 1 AS `estado`*/;
+SET character_set_client = @saved_cs_client;
 
 --
--- Dumping data for table `destino`
+-- Temporary view structure for view `vista_paquete_tour`
 --
 
-LOCK TABLES `destino` WRITE;
-/*!40000 ALTER TABLE `destino` DISABLE KEYS */;
-INSERT INTO `destino` VALUES (123,'bogota','quibdo',1),(99999,'adad','dadad',0);
-/*!40000 ALTER TABLE `destino` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hotel`
---
-
-DROP TABLE IF EXISTS `hotel`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+DROP TABLE IF EXISTS `vista_paquete_tour`;
+/*!50001 DROP VIEW IF EXISTS `vista_paquete_tour`*/;
+SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hotel` (
-  `idHotel` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(100) NOT NULL,
-  `direcion` varchar(50) NOT NULL,
-  `correo` varchar(30) NOT NULL,
-  `tipo_hospedaje` varchar(45) NOT NULL,
-  `descripcion` varchar(45) NOT NULL,
-  `tarifa_base` float NOT NULL,
-  `id_Destino` int NOT NULL,
-  PRIMARY KEY (`idHotel`),
-  KEY `id_Destino_idx` (`id_Destino`),
-  CONSTRAINT `id_Destino` FOREIGN KEY (`id_Destino`) REFERENCES `destino` (`id_Destino`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50001 CREATE VIEW `vista_paquete_tour` AS SELECT 
+ 1 AS `idUsuario`,
+ 1 AS `tour_nombre`,
+ 1 AS `nombre`,
+ 1 AS `condicion`*/;
+SET character_set_client = @saved_cs_client;
 
 --
--- Dumping data for table `hotel`
+-- Final view structure for view `vista_usuario`
 --
 
-LOCK TABLES `hotel` WRITE;
-/*!40000 ALTER TABLE `hotel` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
-UNLOCK TABLES;
+/*!50001 DROP VIEW IF EXISTS `vista_usuario`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_usuario` AS select `usuario`.`idUsuario` AS `idUsuario`,`usuario`.`nombre` AS `nombre`,`usuario`.`tipo_doc` AS `tipo_doc`,`usuario`.`documento` AS `documento`,`usuario`.`correo` AS `correo`,`usuario`.`sexo` AS `sexo`,`usuario`.`direccion` AS `direccion`,`usuario`.`rol` AS `rol`,`usuario`.`login` AS `login`,`usuario`.`clave` AS `clave`,`usuario`.`fecha_creacion` AS `fecha_creacion`,`usuario`.`estado` AS `estado` from `usuario` where (`usuario`.`estado` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
--- Table structure for table `permiso_usuario`
+-- Final view structure for view `vista_paquete_tour`
 --
 
-DROP TABLE IF EXISTS `permiso_usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `permiso_usuario` (
-  `idPermiso_usuario` int NOT NULL AUTO_INCREMENT,
-  `id_permiso` int NOT NULL,
-  `id_usuario` int NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`idPermiso_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `permiso_usuario`
---
-
-LOCK TABLES `permiso_usuario` WRITE;
-/*!40000 ALTER TABLE `permiso_usuario` DISABLE KEYS */;
-INSERT INTO `permiso_usuario` VALUES (123,1234,12345,1),(1234,12345,123456,0);
-/*!40000 ALTER TABLE `permiso_usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'proyecto_agencia'
---
+/*!50001 DROP VIEW IF EXISTS `vista_paquete_tour`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_paquete_tour` AS select `paquete_tour`.`idPaquete_tour` AS `idUsuario`,`paquete_tour`.`id_tour` AS `tour_nombre`,`paquete_tour`.`id_paquete` AS `nombre`,`paquete_tour`.`condicion` AS `condicion` from ((`paquete_tour` join `paquete` on((`paquete_tour`.`id_paquete` = `paquete`.`id_paquete`))) join `tour` on((`paquete_tour`.`id_tour` = `tour`.`id_tour`))) where (`paquete_tour`.`condicion` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
 -- Dumping routines for database 'proyecto_agencia'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `actualizacion_destino` */;
+/*!50003 DROP PROCEDURE IF EXISTS `actualizar_paquete_tour` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -115,16 +102,16 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizacion_destino`(id_desti int,depto varchar(50), cidad varchar(45),esta tinyint)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_paquete_tour`(in Idpaqto int, in idtur int, in idpaque int)
 BEGIN
-update destino set id_Destino=id_desti, Departamento=depto, ciudad=cidad, estado=esta where id_Destino = id_desti;
+update paquete_tour set idPaquete_tour = Idpaqto, id_tour = idtur, id_paquete = idpaque, condicion = '1' where idPaquete_tour = Idpaqto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualiza_permiso_usuario` */;
+/*!50003 DROP PROCEDURE IF EXISTS `actualizar_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -134,16 +121,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualiza_permiso_usuario`(id_permiso_usu int, id_permi int, id_usu int )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_usuario`(in idusu int, in Nomb varchar(200), in tidoc varchar(20), in docu varchar(20), in cor varchar(200), in sex int, in dire varchar(50), in ro int, in log varchar(30), in cla varchar(40), in fecrea date)
 BEGIN
-update permiso_usuario set idPermiso_usuario=id_permiso_usu, id_permiso=id_permi, id_usuario=id_usu where idPermiso_usuario = id_permiso_usu;
+update paquete set idUsuario = IdPaq, Nombre = Nomb, tipo_doc= tidoc, documento = docu, correo = cor, sexo = sex, direccion = dire, rol = ro, login = log, clave = cla, fecha_creacion = fecrea, estado = '0' where idUsuario = idusu;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_destino` */;
+/*!50003 DROP PROCEDURE IF EXISTS `buscar_paquete_tour` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -153,16 +140,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_destino`(in id_desti int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_paquete_tour`(in idpaqto int)
 BEGIN
-select * from destino where id_Destino = id_desti;
+select * from paquete_tour where idPaquete_Tour = idpaqto;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_permiso_usuario` */;
+/*!50003 DROP PROCEDURE IF EXISTS `buscar_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -172,16 +159,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_permiso_usuario`(in idpermiso_usu int )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_usuario`(in idusu int)
 BEGIN
-select * from permiso_usuario where idPermiso_usuario = idpermiso_usu;
+select * from usuario where idUsuario = idusu;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminacon_destino` */;
+/*!50003 DROP PROCEDURE IF EXISTS `eliminar_paquete_tour` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -191,16 +178,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminacon_destino`(in id_desti int )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_paquete_tour`(in idpaqtour int)
 BEGIN
-update destino set estado = '1' where id_destino = id_desti;
+update paquete_tour set condicion = '1' where idPaquete_tour = idpaqtour;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_permiso_usuario` */;
+/*!50003 DROP PROCEDURE IF EXISTS `eliminar_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -210,16 +197,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_permiso_usuario`(in idpermiso_usu int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_usuario`(in idusu int)
 BEGIN
-update permiso_usuario set estado = '1' where idPermiso_usuario = idpermiso_usu;
+update usuario set estado = '0' where idUsurio = idusu;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insersion_destino` */;
+/*!50003 DROP PROCEDURE IF EXISTS `insertar_paquete_tour` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -229,16 +216,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insersion_destino`(in id_desti int, in departamen varchar(50), in ciuda varchar (45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_paquete_tour`(in idto int, in idpaque int)
 BEGIN
-insert into destino (id_Destino, Departamento,Ciudad, estado) values (id_desti, departamen,ciuda, '0');
+insert into paquete_tour (id_tour, id_paquete) values (idto, idpaque, '1');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insersion_permiso_usuario` */;
+/*!50003 DROP PROCEDURE IF EXISTS `insertar_usuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -248,47 +235,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insersion_permiso_usuario`(in idPermiso_usu int, in id_permis int, in id_usu int  )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_usuario`(in nom varchar(200), in tipo varchar(20), in docu varchar(20), in cor varchar(200), in sex int, in dire varchar(50), in rol int, in log varchar (30), in cla varchar(40), in fecre date)
 BEGIN
-insert into permiso_usuario (idPermiso_usuario, id_permiso, id_usuario, estado) values (idPermiso_usu, id_permis, id_usu, '0');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insesion_destino` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insesion_destino`(in id_desti int, in departamen varchar(50), in ciuda varchar (45))
-BEGIN
-insert into destino (id_Destino, Departamento,Ciudad, estado) values (id_desti, departamen,ciuda, '0');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insestar_destino` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insestar_destino`(in id_desti int, in departamen varchar(50), in ciuda varchar (45))
-BEGIN
-insert into destino (id_Destino, Departamento,Ciudad, estado) values (id_desti, departamen,ciuda, '0');
+insert into usuario  values (nom, tipo, docu, cor, sex, dire, rol, log, cla, fecre, '1');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -305,4 +254,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-05  8:59:00
+-- Dump completed on 2024-07-11  8:25:52
