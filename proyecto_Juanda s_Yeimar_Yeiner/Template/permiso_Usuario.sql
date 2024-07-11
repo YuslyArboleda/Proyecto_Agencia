@@ -16,24 +16,23 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tour`
+-- Table structure for table `permiso_usuario`
 --
 
-DROP TABLE IF EXISTS `tour`;
+DROP TABLE IF EXISTS `permiso_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tour` (
-  `id_tour` int NOT NULL AUTO_INCREMENT,
-  `nombre_tour` varchar(50) NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
-  `valor` float NOT NULL,
-  `duracion` int NOT NULL,
-  `id_destino` int NOT NULL,
+CREATE TABLE `permiso_usuario` (
+  `idPermiso_usuario` int NOT NULL AUTO_INCREMENT,
+  `id_permiso` int NOT NULL,
+  `id_usua` int NOT NULL,
   `estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_tour`),
-  KEY `destino_idx` (`id_destino`),
-  CONSTRAINT `destino` FOREIGN KEY (`id_destino`) REFERENCES `destino` (`id_Destino`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+  PRIMARY KEY (`idPermiso_usuario`),
+  KEY `id_usua_idx` (`id_usua`),
+  KEY `id_permiso_idx` (`id_permiso`),
+  CONSTRAINT `id_permiso` FOREIGN KEY (`id_permiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_usua` FOREIGN KEY (`id_usua`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -45,4 +44,4 @@ CREATE TABLE `tour` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-10 10:27:00
+-- Dump completed on 2024-07-10  8:44:22
