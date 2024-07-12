@@ -4,7 +4,7 @@
 - pip install mysqlclient
 - pip install django djangorestframework
 # Crear proyecto
-- django-admin startproject nombredelproyecto"
+- django-admin startproject nombredelproyecto
 - cd nombredelproyecto
 - python manage.py startapp nombredelaApp
 
