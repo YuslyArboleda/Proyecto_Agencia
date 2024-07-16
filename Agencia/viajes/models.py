@@ -11,9 +11,11 @@ class Usuario(models.Model):
     rol = models.IntegerField()
     login = models.CharField(max_length=30)
     clave = models.CharField(max_length=40)
-    estado = models.BooleanField()
     fecha_creacion = models.DateTimeField()
+    estado = models.BooleanField()
     
+
+
 class Paquete_Tour(models.Model):
     id_tour = models.ForeignKey(Tour, on_delete= models.CASCADE)
     id_paquete = models.ForeignKey(Paquete, on_delete= models.CASCADE)
