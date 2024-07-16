@@ -1,0 +1,57 @@
+HICIMOS, GIT FETCH, GIT COMMIT, GIT PUSH ORIGIN pedro, POR ULTIMO DESDE GITHUP HACEMOS PULL REQUEST.
+
+
+$ git fetch upstream main
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 929 bytes | 24.00 KiB/s, done.
+From https://github.com/YuslyArboleda/Proyecto_Agencia
+ * branch            main       -> FETCH_HEAD
+   43dda32..f59fc1a  main       -> upstream/main
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (pedro)
+$ git remote -v
+origin  https://github.com/pedroluiscordoba/Proyecto_Agencia_AnayPedro.git (fetch)
+origin  https://github.com/pedroluiscordoba/Proyecto_Agencia_AnayPedro.git (push)
+upstream        https://github.com/YuslyArboleda/Proyecto_Agencia.git (fetch)
+upstream        https://github.com/YuslyArboleda/Proyecto_Agencia.git (push)
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (pedro)
+$ git add .
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (pedro)
+$ git commit -m "se realiza la actualizacion de la tabla cliente"
+[pedro 9fe026c] se realiza la actualizacion de la tabla cliente
+ 15 files changed, 221 insertions(+)
+ create mode 100644 Agencia/Agencia/__init__.py
+ create mode 100644 Agencia/Agencia/__pycache__/__init__.cpython-312.pyc
+ create mode 100644 Agencia/Agencia/__pycache__/settings.cpython-312.pyc
+ create mode 100644 Agencia/Agencia/asgi.py
+ create mode 100644 Agencia/Agencia/settings.py
+ create mode 100644 Agencia/Agencia/urls.py
+ create mode 100644 Agencia/Agencia/wsgi.py
+ create mode 100644 Agencia/manage.py
+ create mode 100644 Agencia/viajes/__init__.py
+ create mode 100644 Agencia/viajes/admin.py
+ create mode 100644 Agencia/viajes/apps.py
+ create mode 100644 Agencia/viajes/migrations/__init__.py
+ create mode 100644 Agencia/viajes/models.py
+ create mode 100644 Agencia/viajes/tests.py
+ create mode 100644 Agencia/viajes/views.py
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (pedro)
+$ git push origin pedro
+Enumerating objects: 21, done.
+Counting objects: 100% (21/21), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (20/20), 5.08 KiB | 650.00 KiB/s, done.
+Total 20 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To https://github.com/pedroluiscordoba/Proyecto_Agencia_AnayPedro.git
+   6e059e3..9fe026c  pedro -> pedro
+
+Peter Louis@DESKTOP-D6OLB90 MINGW64 ~/Desktop/AnayPedro (pedro)
+$
