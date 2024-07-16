@@ -1,5 +1,9 @@
 from django.db import models
-<<<<<<< HEAD
+
+class Permiso(models.Model):
+    nombre = models.CharField(max_length=50)
+    estado = models.BooleanField()
+
 class Usuario(models.Model):
     nombre = models.CharField(max_length=200)
     tipo_documento = models.CharField(max_length=20)
@@ -13,10 +17,11 @@ class Usuario(models.Model):
     clave = models.CharField(max_length=40)
     fecha_creacion = models.DateTimeField()
     estado = models.BooleanField()
+
 class Paquete_Tour(models.Model):
     id_tour = models.ForeignKey(Tour, on_delete= models.CASCADE)
     id_paquete = models.ForeignKey(Paquete, on_delete= models.CASCADE)
-=======
+
 
 class Paquete (models.Model):
     nombre = models.CharField (max_length = 200)
@@ -42,8 +47,3 @@ class Cliente(models.Model):
 
 
 
-
-
-
-
->>>>>>> d9b5c5e887730c02f61252d2b69fee8b8d336d57
