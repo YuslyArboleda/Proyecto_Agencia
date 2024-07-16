@@ -1,7 +1,11 @@
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
+>>>>>>> 2c597f6c6b176eaa6a57870f40c18608eca64f54
+=======
 >>>>>>> a55a0caaf641ad9d310c36b1ff461911b1a4271c
+>>>>>>> d9b5c5e887730c02f61252d2b69fee8b8d336d57
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -13,10 +17,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 <<<<<<< HEAD
+<<<<<<< HEAD
+SECRET_KEY = 'django-insecure-fap=#da&f3g4#0_@w&fbc&eg2isydhwpwi-*ffyh5mgi8^(d25'
+=======
+SECRET_KEY = 'django-insecure-q3mnu3mv)qo_cw+az)7$$snc3b(bbu2r(cmp(g%qs4$mg@n(e#'
+>>>>>>> 2c597f6c6b176eaa6a57870f40c18608eca64f54
+=======
 SECRET_KEY = 'django-insecure-9%ledaz9k(vtja7x384qyfr+3x+1wy8yp=%90pqo5adn5wi#a+'
 =======
 SECRET_KEY = 'django-insecure-q3mnu3mv)qo_cw+az)7$$snc3b(bbu2r(cmp(g%qs4$mg@n(e#'
 >>>>>>> a55a0caaf641ad9d310c36b1ff461911b1a4271c
+>>>>>>> d9b5c5e887730c02f61252d2b69fee8b8d336d57
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,7 +84,11 @@ WSGI_APPLICATION = 'Agencia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
+        'NAME':  'proyecto_agencia',
+=======
         'NAME': 'proyecto_agencia',
+>>>>>>> 2c597f6c6b176eaa6a57870f40c18608eca64f54
         'USER': 'root',
         'PASSWORD': '1234',
 <<<<<<< HEAD
