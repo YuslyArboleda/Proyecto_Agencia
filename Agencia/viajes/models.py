@@ -1,5 +1,4 @@
 from django.db import models
-
 class Usuario(models.Model):
     nombre = models.CharField(max_length=200)
     tipo_documento = models.CharField(max_length=20)
@@ -13,9 +12,6 @@ class Usuario(models.Model):
     clave = models.CharField(max_length=40)
     fecha_creacion = models.DateTimeField()
     estado = models.BooleanField()
-    
-
-
 class Paquete_Tour(models.Model):
     id_tour = models.ForeignKey(Tour, on_delete= models.CASCADE)
     id_paquete = models.ForeignKey(Paquete, on_delete= models.CASCADE)
