@@ -8,6 +8,8 @@ class Cliente(models.Model):
     cantidad =models.CharField(max_length=45)
     estado =models.BooleanField()
 
+# Modelo
+
 
 
 
