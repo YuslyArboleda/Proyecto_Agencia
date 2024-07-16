@@ -1,6 +1,4 @@
 from django.db import models
-<<<<<<< HEAD
-
 
 class Paquete (models.Model):
     nombre = models.CharField (max_length = 200)
@@ -15,7 +13,6 @@ class Paquete (models.Model):
     disponibilidad = models.CharField (max_length = 50)
 
 
-=======
 class Cliente(models.Model):
     nombre =models.CharField(max_length=200)
     Tipo_doc =models.CharField(max_length=20)
@@ -25,8 +22,7 @@ class Cliente(models.Model):
     cantidad =models.CharField(max_length=45)
     estado =models.BooleanField()
 
-# Modelo
->>>>>>> 2c597f6c6b176eaa6a57870f40c18608eca64f54
+
 
 
 
