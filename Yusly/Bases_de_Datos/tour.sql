@@ -32,7 +32,7 @@ CREATE TABLE `tour` (
   `estado` tinyint NOT NULL,
   PRIMARY KEY (`id_tour`),
   KEY `destino_idx` (`id_destino`),
-  CONSTRAINT `destino` FOREIGN KEY (`id_destino`) REFERENCES `destino` (`id_Destino`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `destinos` FOREIGN KEY (`id_destino`) REFERENCES `destino` (`id_Destino`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -2,7 +2,9 @@
 - pip install django
 - pip install mysql-connector-python
 - pip install mysqlclient
-- django-admin startproject nombredelproyecto"
+- pip install django djangorestframework
+# Crear proyecto
+- django-admin startproject nombredelproyecto
 - cd nombredelproyecto
 - python manage.py startapp nombredelaApp
 
@@ -11,7 +13,6 @@
 - <python manage.py makemigrations>
 - python manage.py migrate
 
-## Configuración del Back-End con Microservicios
-- pip install flask
+
 
 
