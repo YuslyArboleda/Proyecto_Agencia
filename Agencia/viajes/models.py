@@ -1,5 +1,6 @@
 from django.db import models
 
+<<<<<<< HEAD
 class Acomodacion(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=300)
@@ -12,3 +13,5 @@ class hospedaje_acomodacion(models.Model):
     tarifa_agencia = models.FloatField()
     tarifa = models.FloatField()
     estado_hospe_aco = models.BooleanField()
+=======
+>>>>>>> d1cde30f4b684ac59d2a4d20bef611eb9b94f668

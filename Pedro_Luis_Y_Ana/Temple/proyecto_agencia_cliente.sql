@@ -24,13 +24,17 @@ DROP TABLE IF EXISTS `cliente`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
   `idcliente` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(45) NOT NULL,
-  `Telefono` varchar(45) NOT NULL,
-  `Correo` varchar(45) NOT NULL,
-  `Direccion` varchar(45) NOT NULL,
-  `Cantidad` varchar(45) NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idcliente`)
+  `Nombre` varchar(200) NOT NULL,
+  `Tipo_doc` varchar(20) NOT NULL,
+  `documento` varchar(20) NOT NULL,
+  `Telefono` varchar(20) NOT NULL,
+  `Correo` varchar(200) NOT NULL,
+  `Direccion` varchar(50) NOT NULL,
+  `id_destino` int NOT NULL,
+  `estado` tinyint NOT NULL,
+  PRIMARY KEY (`idcliente`),
+  KEY `destino_cliente_idx` (`id_destino`),
+  CONSTRAINT `destino_cliente` FOREIGN KEY (`id_destino`) REFERENCES `destino` (`id_Destino`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 11:40:42
+-- Dump completed on 2024-07-17  9:24:17
