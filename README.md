@@ -13,6 +13,8 @@
 - <python manage.py makemigrations>
 - python manage.py migrate
 
-
+## Crear maquina Virtual (para Jarinson)
+- python -m venv env
+- env\Scripts\activate
 
 
