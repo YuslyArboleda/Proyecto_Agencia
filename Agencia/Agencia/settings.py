@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'viajes',
-
 ]
 
 MIDDLEWARE = [
@@ -69,9 +68,6 @@ WSGI_APPLICATION = 'Agencia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-
-        'NAME':  'proyecto_agencia',
-        'USER': 'ROOT',
         'NAME': 'proyecto_agencia',
         'USER': 'root',
         'PASSWORD': '1234',
