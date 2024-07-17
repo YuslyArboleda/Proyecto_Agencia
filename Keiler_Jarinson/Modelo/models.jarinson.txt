@@ -1,0 +1,12 @@
+from django.db import models
+class detalle_reserva(models.Model):
+    id_detalle_reserva =models.IntegerField()
+    id_resrva =models.ForeignKey()
+    id_paquete =models.ForeignKey()
+    id_acomodacion =models.ForeignKey()
+    id_adicion =models.ForeignKey()
+    habitaciones =models.IntegerField()
+    adulto =models.IntegerField()
+    infante =models.IntegerField
+    comentarios =models.CharField()
+    estado =models.BooleanField()

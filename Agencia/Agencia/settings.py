@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> a55a0caaf641ad9d310c36b1ff461911b1a4271c
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -12,11 +8,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-<<<<<<< HEAD
+
 SECRET_KEY = 'django-insecure-hn2&fzy5$g2-hz!on^7ki#($s=8pa@=i+@7@f0)rjhgunwc^^z'
-=======
 SECRET_KEY = 'django-insecure-q3mnu3mv)qo_cw+az)7$$snc3b(bbu2r(cmp(g%qs4$mg@n(e#'
->>>>>>> a55a0caaf641ad9d310c36b1ff461911b1a4271c
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,10 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-=======
     'viajes',
->>>>>>> a55a0caaf641ad9d310c36b1ff461911b1a4271c
+
 ]
 
 MIDDLEWARE = [
@@ -76,13 +69,11 @@ WSGI_APPLICATION = 'Agencia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-<<<<<<< HEAD
+
         'NAME':  'proyecto_agencia',
         'USER': 'ROOT',
-=======
         'NAME': 'proyecto_agencia',
         'USER': 'root',
->>>>>>> a55a0caaf641ad9d310c36b1ff461911b1a4271c
         'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '3306',
