@@ -1,5 +1,6 @@
 from django.db import models 
 
+<<<<<<< HEAD
 class hospedaje (models.model):
     nombre = models.charfield(max_length=200)
     direccion = models. charfield(max_length = 100)
@@ -8,3 +9,5 @@ class hospedaje (models.model):
     descripcion = models . charfield ()
     tarifa_base = models .charfield()
     
+=======
+>>>>>>> 040e8564cd480e1ad231074ae90b97fa58482241
