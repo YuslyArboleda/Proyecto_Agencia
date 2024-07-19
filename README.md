@@ -11,7 +11,7 @@
 
 ## Realizar las migraciones
 
-- python manage.py inspectdb > myapp/models.py
+- python manage.py inspectdb > viajes/models.py
 - python manage.py migrate
 - python manage.py makemigrations
 
