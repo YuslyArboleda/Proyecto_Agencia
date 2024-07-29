@@ -5,7 +5,7 @@
 - pip install django djangorestframework
   
 # Crear proyecto
-1- django-admin startproject nombredelproyecto
+- django-admin startproject nombredelproyecto
 - cd nombredelproyecto
 - python manage.py startapp nombredelaApp
 
