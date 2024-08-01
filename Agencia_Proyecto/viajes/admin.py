@@ -8,8 +8,11 @@ from .models import (Acomodacion,
                      HospedajeAcomodacion,
                      Paquete,
                      PaqueteTour,
+                     Permiso,
+                     PermisoUsuario,
                      Reserva,
-                     Tour)
+                     Tour,
+                     Usuario)
 
 admin.register(Acomodacion)
 admin.register(Adicion)
@@ -22,3 +25,4 @@ admin.register(Paquete)
 admin.register(PaqueteTour)
 admin.register(Reserva)
 admin.register(Tour)
+# Register your models here.
