@@ -49,7 +49,7 @@ class Hospedaje(models.Model):
     tarifa_base = models.FloatField()
     id_destino = models.ForeignKey(Destino, models.DO_NOTHING, db_column='id_destino')
     estado = models.IntegerField()
-    imagen = models.TextField(blank=True, null=True)
+    imagen = models.ImageField(upload_to="relative/path/to/upload", blank=True, null=True)
 
 class HospedajeAcomodacion(models.Model):
     id_hospedaje_acomodacion = models.AutoField(primary_key=True)
@@ -58,7 +58,7 @@ class HospedajeAcomodacion(models.Model):
     temporada = models.CharField(max_length=20)
     tarifa_agencia = models.FloatField()
     tarifa = models.FloatField()
-    imagen = models.TextField(blank=True, null=True)
+    imagen = models.ImageField(upload_to="relative/path/to/upload", blank=True, null=True)
 
 class Paquete(models.Model):
     id_paquete = models.AutoField(primary_key=True)
@@ -98,4 +98,4 @@ class Tour(models.Model):
     duracion = models.IntegerField()
     estado = models.IntegerField()
     id_destino = models.ForeignKey(Destino, models.DO_NOTHING, db_column='id_destino')
-    imagen = models.TextField()
+    imagen = models.ImageField(upload_to="relative/path/to/upload", blank=True, null=True)
