@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.db import connection
+from django.http import JsonResponse
 from .models import (Acomodacion,
                      Adicion,
                      Cliente,
@@ -81,3 +83,14 @@ class TourViewSet(viewsets.ModelViewSet):
 
 def index(request):
     return render(request, 'index.html')    
+
+def buscar_destino(request):
+    query = request.GET.get("q","")
+    if query:
+        with connection.cursor() as cursor:
+            cursor.callpro("cons_destino", [query])
+            resultados = cursor.fetchall()
+            columns = [col[0] for col in cursor.description]
+            resultado_dict = [dict(zip(columns, row)) for row in resultados]
+        return JsonResponse (resultado_dict, safe=False)            
+    return JsonResponse([], safe=False)
