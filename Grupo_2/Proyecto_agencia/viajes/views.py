@@ -88,7 +88,7 @@ def buscar_destino(request):
     query = request.GET.get("q","")
     if query:
         with connection.cursor() as cursor:
-            cursor.callpro("cons_destino", [query])
+            cursor.callproc("consultar_paquete_tour", [query])
             resultados = cursor.fetchall()
             columns = [col[0] for col in cursor.description]
             resultado_dict = [dict(zip(columns, row)) for row in resultados]

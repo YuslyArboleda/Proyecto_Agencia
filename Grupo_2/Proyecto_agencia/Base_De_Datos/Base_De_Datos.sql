@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: proyecto_agencia
+-- Host: localhost    Database: agencia
 -- ------------------------------------------------------
 -- Server version	9.0.0
 
@@ -16,1269 +16,641 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `acomodacion`
+-- Table structure for table `auth_group`
 --
 
-DROP TABLE IF EXISTS `acomodacion`;
+DROP TABLE IF EXISTS `auth_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `acomodacion` (
-  `id_acomodacion` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(300) NOT NULL,
-  `estado_acomoda` tinyint NOT NULL,
-  PRIMARY KEY (`id_acomodacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `acomodacion`
---
-
-LOCK TABLES `acomodacion` WRITE;
-/*!40000 ALTER TABLE `acomodacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `acomodacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `adicion`
---
-
-DROP TABLE IF EXISTS `adicion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `adicion` (
-  `id_Adicion` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(20) NOT NULL,
-  `Descripcion` varchar(200) NOT NULL,
-  `Costo` float NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_Adicion`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `adicion`
---
-
-LOCK TABLES `adicion` WRITE;
-/*!40000 ALTER TABLE `adicion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `adicion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cliente`
---
-
-DROP TABLE IF EXISTS `cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cliente` (
-  `idcliente` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(45) NOT NULL,
-  `Telefono` varchar(45) NOT NULL,
-  `Correo` varchar(45) NOT NULL,
-  `Direccion` varchar(45) NOT NULL,
-  `Cantidad` varchar(45) NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cliente`
---
-
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `destino`
---
-
-DROP TABLE IF EXISTS `destino`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `destino` (
-  `id_Destino` int NOT NULL AUTO_INCREMENT,
-  `Departamento` varchar(50) NOT NULL,
-  `Ciudad` varchar(45) NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_Destino`)
-) ENGINE=InnoDB AUTO_INCREMENT=100000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `destino`
---
-
-LOCK TABLES `destino` WRITE;
-/*!40000 ALTER TABLE `destino` DISABLE KEYS */;
-/*!40000 ALTER TABLE `destino` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `detalle_reserva`
---
-
-DROP TABLE IF EXISTS `detalle_reserva`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `detalle_reserva` (
-  `id_detalle_reserva` int NOT NULL,
-  `id_reserva` int NOT NULL,
-  `id_paquete_tour` int DEFAULT NULL,
-  `id_acomodacion` int DEFAULT NULL,
-  `id_adicion` int DEFAULT NULL,
-  `habitaciones` int NOT NULL,
-  `adulto` int NOT NULL,
-  `infante` int NOT NULL,
-  `comentarios` varchar(500) NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`id_detalle_reserva`),
-  KEY `id_reserva_idx` (`id_reserva`),
-  KEY `id_paquete_tour_idx` (`id_paquete_tour`),
-  KEY `id_acomodacion_idx` (`id_acomodacion`),
-  KEY `id_adicion_idx` (`id_adicion`),
-  CONSTRAINT `id_acomoda` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_adicion` FOREIGN KEY (`id_adicion`) REFERENCES `adicion` (`id_Adicion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_paquete_tour` FOREIGN KEY (`id_paquete_tour`) REFERENCES `paquete_tour` (`idPaquete_tour`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_reserva` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`idReserva`) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE `auth_group` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `detalle_reserva`
+-- Dumping data for table `auth_group`
 --
 
-LOCK TABLES `detalle_reserva` WRITE;
-/*!40000 ALTER TABLE `detalle_reserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detalle_reserva` ENABLE KEYS */;
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hospedaje`
+-- Table structure for table `auth_group_permissions`
 --
 
-DROP TABLE IF EXISTS `hospedaje`;
+DROP TABLE IF EXISTS `auth_group_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hospedaje` (
-  `idhospedaje` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `auth_group_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `group_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_permission` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add acomodacion',7,'add_acomodacion'),(26,'Can change acomodacion',7,'change_acomodacion'),(27,'Can delete acomodacion',7,'delete_acomodacion'),(28,'Can view acomodacion',7,'view_acomodacion'),(29,'Can add adicion',8,'add_adicion'),(30,'Can change adicion',8,'change_adicion'),(31,'Can delete adicion',8,'delete_adicion'),(32,'Can view adicion',8,'view_adicion'),(33,'Can add destino',9,'add_destino'),(34,'Can change destino',9,'change_destino'),(35,'Can delete destino',9,'delete_destino'),(36,'Can view destino',9,'view_destino'),(37,'Can add paquete',10,'add_paquete'),(38,'Can change paquete',10,'change_paquete'),(39,'Can delete paquete',10,'delete_paquete'),(40,'Can view paquete',10,'view_paquete'),(41,'Can add cliente',11,'add_cliente'),(42,'Can change cliente',11,'change_cliente'),(43,'Can delete cliente',11,'delete_cliente'),(44,'Can view cliente',11,'view_cliente'),(45,'Can add hospedaje',12,'add_hospedaje'),(46,'Can change hospedaje',12,'change_hospedaje'),(47,'Can delete hospedaje',12,'delete_hospedaje'),(48,'Can view hospedaje',12,'view_hospedaje'),(49,'Can add hospedaje acomodacion',13,'add_hospedajeacomodacion'),(50,'Can change hospedaje acomodacion',13,'change_hospedajeacomodacion'),(51,'Can delete hospedaje acomodacion',13,'delete_hospedajeacomodacion'),(52,'Can view hospedaje acomodacion',13,'view_hospedajeacomodacion'),(53,'Can add paquete tour',14,'add_paquetetour'),(54,'Can change paquete tour',14,'change_paquetetour'),(55,'Can delete paquete tour',14,'delete_paquetetour'),(56,'Can view paquete tour',14,'view_paquetetour'),(57,'Can add reserva',15,'add_reserva'),(58,'Can change reserva',15,'change_reserva'),(59,'Can delete reserva',15,'delete_reserva'),(60,'Can view reserva',15,'view_reserva'),(61,'Can add detalle reserva',16,'add_detallereserva'),(62,'Can change detalle reserva',16,'change_detallereserva'),(63,'Can delete detalle reserva',16,'delete_detallereserva'),(64,'Can view detalle reserva',16,'view_detallereserva'),(65,'Can add tour',17,'add_tour'),(66,'Can change tour',17,'change_tour'),(67,'Can delete tour',17,'delete_tour'),(68,'Can view tour',17,'view_tour');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$720000$IUtyGolJH1Y7KUFYaNrn7G$YJi3twXdjamwtQZtR82cM9Na2sY92ph7zQjvGf2QCOU=','2024-07-31 13:54:21.256164',1,'admin','','','ejemplo@gmail.com',1,1,'2024-07-30 16:07:02.338338'),(2,'pbkdf2_sha256$720000$sO4Q2jGfJW1G1ltnKHlxw2$wwxdW+dkKM42QCTUDBxkYgDRs+zsVNTk6hZxokZuCns=',NULL,1,'Jean','','','example@gmail.com',1,1,'2024-08-02 14:02:56.994167'),(3,'pbkdf2_sha256$720000$fpKXe0pT0MfxBl2otfMQa5$ys06PTxzcjrlYrHsqsr1sdibh0TWMrdvBbyS3BeL9LA=',NULL,1,'Jhoan','','','jhoan@hotmail.com',1,1,'2024-08-02 14:05:20.039442');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user_groups` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_admin_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int DEFAULT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
+  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2024-07-31 16:22:36.240330','1','Destino object (1)',1,'[{\"added\": {}}]',9,1),(2,'2024-07-31 16:22:41.038026','1','Cliente object (1)',1,'[{\"added\": {}}]',11,1),(3,'2024-07-31 16:24:51.073495','2','Cliente object (2)',1,'[{\"added\": {}}]',11,1),(4,'2024-07-31 16:25:41.489135','3','Cliente object (3)',1,'[{\"added\": {}}]',11,1),(5,'2024-07-31 16:26:34.023044','4','Cliente object (4)',1,'[{\"added\": {}}]',11,1),(6,'2024-07-31 16:27:47.609771','5','Cliente object (5)',1,'[{\"added\": {}}]',11,1),(7,'2024-07-31 16:48:49.770011','2','Destino object (2)',1,'[{\"added\": {}}]',9,1),(8,'2024-07-31 16:48:57.405496','3','Destino object (3)',1,'[{\"added\": {}}]',9,1),(9,'2024-07-31 16:49:03.670867','4','Destino object (4)',1,'[{\"added\": {}}]',9,1),(10,'2024-07-31 16:49:10.111601','5','Destino object (5)',1,'[{\"added\": {}}]',9,1),(11,'2024-07-31 16:49:42.204744','1','Acomodacion object (1)',1,'[{\"added\": {}}]',7,1),(12,'2024-07-31 16:49:48.473736','2','Acomodacion object (2)',1,'[{\"added\": {}}]',7,1),(13,'2024-07-31 16:50:40.271741','3','Acomodacion object (3)',1,'[{\"added\": {}}]',7,1),(14,'2024-07-31 16:50:48.154405','4','Acomodacion object (4)',1,'[{\"added\": {}}]',7,1),(15,'2024-07-31 16:50:57.380435','5','Acomodacion object (5)',1,'[{\"added\": {}}]',7,1),(16,'2024-07-31 16:54:34.042590','1','Adicion object (1)',1,'[{\"added\": {}}]',8,1),(17,'2024-07-31 16:55:03.028453','2','Adicion object (2)',1,'[{\"added\": {}}]',8,1),(18,'2024-08-01 14:06:35.749590','1','Acomodacion object (1)',2,'[{\"changed\": {\"fields\": [\"Nombre\", \"Descripcion\"]}}]',7,1),(19,'2024-08-01 14:06:38.867233','1','Acomodacion object (1)',2,'[]',7,1),(20,'2024-08-01 14:08:52.301097','1','Acomodacion object (1)',2,'[{\"changed\": {\"fields\": [\"Descripcion\"]}}]',7,1),(21,'2024-08-01 14:10:11.177867','1','Acomodacion object (1)',2,'[]',7,1),(22,'2024-08-01 14:13:38.451605','2','Acomodacion object (2)',2,'[{\"changed\": {\"fields\": [\"Nombre\", \"Descripcion\"]}}]',7,1),(23,'2024-08-01 14:13:58.755888','1','Acomodacion object (1)',2,'[{\"changed\": {\"fields\": [\"Descripcion\"]}}]',7,1),(24,'2024-08-01 14:14:29.469219','3','Acomodacion object (3)',2,'[{\"changed\": {\"fields\": [\"Nombre\", \"Descripcion\"]}}]',7,1),(25,'2024-08-01 14:14:33.324684','3','Acomodacion object (3)',2,'[]',7,1),(26,'2024-08-01 14:15:16.586969','4','Acomodacion object (4)',2,'[{\"changed\": {\"fields\": [\"Nombre\", \"Descripcion\"]}}]',7,1),(27,'2024-08-01 14:17:38.757296','5','Acomodacion object (5)',2,'[{\"changed\": {\"fields\": [\"Nombre\", \"Descripcion\"]}}]',7,1),(28,'2024-08-01 14:21:35.974475','1','Adicion object (1)',2,'[{\"changed\": {\"fields\": [\"Nombre\", \"Descripcion\", \"Costo\"]}}]',8,1),(29,'2024-08-01 14:24:20.598941','2','Adicion object (2)',2,'[{\"changed\": {\"fields\": [\"Nombre\", \"Descripcion\", \"Costo\"]}}]',8,1),(30,'2024-08-01 14:28:37.440002','3','Adicion object (3)',1,'[{\"added\": {}}]',8,1),(31,'2024-08-01 14:29:38.755619','4','Adicion object (4)',1,'[{\"added\": {}}]',8,1),(32,'2024-08-01 14:31:37.454604','5','Adicion object (5)',1,'[{\"added\": {}}]',8,1),(33,'2024-08-01 15:16:08.681186','1','Adicion object (1)',2,'[]',8,1),(34,'2024-08-01 15:16:13.037677','2','Adicion object (2)',2,'[]',8,1),(35,'2024-08-01 15:16:17.678320','3','Adicion object (3)',2,'[]',8,1),(36,'2024-08-01 15:16:21.673752','4','Adicion object (4)',2,'[]',8,1),(37,'2024-08-01 15:16:25.665087','5','Adicion object (5)',2,'[]',8,1),(38,'2024-08-01 15:16:31.258663','1','Adicion object (1)',2,'[]',8,1),(39,'2024-08-01 15:22:21.204455','1','Reserva object (1)',1,'[{\"added\": {}}]',15,1),(40,'2024-08-01 15:29:11.132611','1','Hospedaje object (1)',1,'[{\"added\": {}}]',12,1),(41,'2024-08-01 15:30:43.198789','2','Hospedaje object (2)',1,'[{\"added\": {}}]',12,1),(42,'2024-08-01 15:32:16.278921','3','Hospedaje object (3)',1,'[{\"added\": {}}]',12,1),(43,'2024-08-01 15:34:19.711387','4','Hospedaje object (4)',1,'[{\"added\": {}}]',12,1),(44,'2024-08-01 15:35:17.567887','5','Hospedaje object (5)',1,'[{\"added\": {}}]',12,1),(45,'2024-08-01 16:09:25.462302','1','Paquete object (1)',1,'[{\"added\": {}}]',10,1),(46,'2024-08-02 15:40:15.468531','1','Reserva object (1)',2,'[]',15,1),(47,'2024-08-02 15:40:43.704314','2','Reserva object (2)',1,'[{\"added\": {}}]',15,1),(48,'2024-08-02 15:42:54.157218','3','Reserva object (3)',1,'[{\"added\": {}}]',15,1),(49,'2024-08-02 15:43:21.012150','4','Reserva object (4)',1,'[{\"added\": {}}]',15,1),(50,'2024-08-02 15:43:46.350292','5','Reserva object (5)',1,'[{\"added\": {}}]',15,1),(51,'2024-08-02 15:46:10.028856','5','Hospedaje object (5)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(52,'2024-08-02 15:46:16.555016','5','Hospedaje object (5)',2,'[]',12,1),(53,'2024-08-02 15:46:21.444000','4','Hospedaje object (4)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(54,'2024-08-02 15:46:26.664696','3','Hospedaje object (3)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(55,'2024-08-02 15:46:33.971526','2','Hospedaje object (2)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(56,'2024-08-02 15:46:40.467876','1','Hospedaje object (1)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(57,'2024-08-02 15:50:14.210886','1','Hospedaje object (1)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(58,'2024-08-02 15:50:26.924826','2','Hospedaje object (2)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(59,'2024-08-02 15:50:34.409185','3','Hospedaje object (3)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(60,'2024-08-02 15:50:40.821077','4','Hospedaje object (4)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(61,'2024-08-02 15:50:46.304995','5','Hospedaje object (5)',2,'[{\"changed\": {\"fields\": [\"Imagen\"]}}]',12,1),(62,'2024-08-02 16:09:40.013249','1','Tour object (1)',1,'[{\"added\": {}}]',17,1),(63,'2024-08-02 16:12:39.070224','2','Tour object (2)',1,'[{\"added\": {}}]',17,1),(64,'2024-08-02 16:18:06.756501','3','Tour object (3)',1,'[{\"added\": {}}]',17,1),(65,'2024-08-02 16:21:24.448211','4','Tour object (4)',1,'[{\"added\": {}}]',17,1),(66,'2024-08-02 16:24:21.319882','5','Tour object (5)',1,'[{\"added\": {}}]',17,1),(67,'2024-08-02 16:31:49.782745','2','Paquete object (2)',1,'[{\"added\": {}}]',10,1),(68,'2024-08-02 16:35:10.932807','3','Paquete object (3)',1,'[{\"added\": {}}]',10,1),(69,'2024-08-02 16:37:33.892510','4','Paquete object (4)',1,'[{\"added\": {}}]',10,1),(70,'2024-08-02 16:38:48.753470','1','Paquete object (1)',2,'[{\"changed\": {\"fields\": [\"Disponibilidad\"]}}]',10,1),(71,'2024-08-02 16:39:01.965061','2','Paquete object (2)',2,'[{\"changed\": {\"fields\": [\"Disponibilidad\"]}}]',10,1),(72,'2024-08-02 16:39:15.846145','3','Paquete object (3)',2,'[{\"changed\": {\"fields\": [\"Disponibilidad\"]}}]',10,1),(73,'2024-08-02 16:43:36.483869','5','Paquete object (5)',1,'[{\"added\": {}}]',10,1),(74,'2024-08-02 16:43:55.671547','1','PaqueteTour object (1)',1,'[{\"added\": {}}]',14,1),(75,'2024-08-02 16:44:01.968854','2','PaqueteTour object (2)',1,'[{\"added\": {}}]',14,1),(76,'2024-08-02 16:44:06.409151','3','PaqueteTour object (3)',1,'[{\"added\": {}}]',14,1),(77,'2024-08-02 16:44:09.585201','4','PaqueteTour object (4)',1,'[{\"added\": {}}]',14,1),(78,'2024-08-02 16:44:13.002221','5','PaqueteTour object (5)',1,'[{\"added\": {}}]',14,1),(79,'2024-08-05 13:24:55.896097','1','DetalleReserva object (1)',1,'[{\"added\": {}}]',16,1),(80,'2024-08-05 13:25:11.896978','2','DetalleReserva object (2)',1,'[{\"added\": {}}]',16,1),(81,'2024-08-05 13:25:29.471215','3','DetalleReserva object (3)',1,'[{\"added\": {}}]',16,1),(82,'2024-08-05 13:25:46.308536','4','DetalleReserva object (4)',1,'[{\"added\": {}}]',16,1),(83,'2024-08-05 13:26:04.372338','5','DetalleReserva object (5)',1,'[{\"added\": {}}]',16,1),(84,'2024-08-05 13:30:52.686946','1','HospedajeAcomodacion object (1)',1,'[{\"added\": {}}]',13,1),(85,'2024-08-05 13:32:56.673531','2','HospedajeAcomodacion object (2)',1,'[{\"added\": {}}]',13,1),(86,'2024-08-05 13:33:45.417210','3','HospedajeAcomodacion object (3)',1,'[{\"added\": {}}]',13,1),(87,'2024-08-05 13:34:54.821799','4','HospedajeAcomodacion object (4)',1,'[{\"added\": {}}]',13,1),(88,'2024-08-05 13:35:31.712191','5','HospedajeAcomodacion object (5)',1,'[{\"added\": {}}]',13,1);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_content_type` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(5,'contenttypes','contenttype'),(6,'sessions','session'),(7,'viajes','acomodacion'),(8,'viajes','adicion'),(11,'viajes','cliente'),(9,'viajes','destino'),(16,'viajes','detallereserva'),(12,'viajes','hospedaje'),(13,'viajes','hospedajeacomodacion'),(10,'viajes','paquete'),(14,'viajes','paquetetour'),(15,'viajes','reserva'),(17,'viajes','tour');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_migrations` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2024-07-30 15:52:27.140515'),(2,'auth','0001_initial','2024-07-30 15:52:27.841594'),(3,'admin','0001_initial','2024-07-30 15:52:27.984555'),(4,'admin','0002_logentry_remove_auto_add','2024-07-30 15:52:28.000207'),(5,'admin','0003_logentry_add_action_flag_choices','2024-07-30 15:52:28.022608'),(6,'contenttypes','0002_remove_content_type_name','2024-07-30 15:52:28.127591'),(7,'auth','0002_alter_permission_name_max_length','2024-07-30 15:52:28.211187'),(8,'auth','0003_alter_user_email_max_length','2024-07-30 15:52:28.243628'),(9,'auth','0004_alter_user_username_opts','2024-07-30 15:52:28.261338'),(10,'auth','0005_alter_user_last_login_null','2024-07-30 15:52:28.374271'),(11,'auth','0006_require_contenttypes_0002','2024-07-30 15:52:28.376270'),(12,'auth','0007_alter_validators_add_error_messages','2024-07-30 15:52:28.389313'),(13,'auth','0008_alter_user_username_max_length','2024-07-30 15:52:28.472445'),(14,'auth','0009_alter_user_last_name_max_length','2024-07-30 15:52:28.566794'),(15,'auth','0010_alter_group_name_max_length','2024-07-30 15:52:28.602160'),(16,'auth','0011_update_proxy_permissions','2024-07-30 15:52:28.613833'),(17,'auth','0012_alter_user_first_name_max_length','2024-07-30 15:52:28.711688'),(18,'sessions','0001_initial','2024-07-30 15:52:28.750968'),(19,'viajes','0001_initial','2024-07-30 15:52:29.799484'),(20,'viajes','0002_paquetetour_id_hospedaje_acomodacion_and_more','2024-08-13 15:25:10.853773'),(21,'viajes','0003_hospedaje_telefono','2024-08-13 15:25:10.985086');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime(6) NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('m97rreu4tt6l3ebxq266x2q58btfis2p','.eJxVjEEOwiAQRe_C2pCZUgRcuu8ZyACDVA0kpV0Z765NutDtf-_9l_C0rcVvnRc_J3ERKE6_W6D44LqDdKd6azK2ui5zkLsiD9rl1BI_r4f7d1Col299DmhdIIiaLTsgrTFpg2BJqwwMeWSklNPoHEFwyGggII88ZINKDeL9AeRVN74:1sZ9mX:LQukJi0ENmmPsrNeJwrm_Q9n0qhL5r3E0WWLpiC8ZxI','2024-08-14 13:54:21.256164');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `viajes_acomodacion`
+--
+
+DROP TABLE IF EXISTS `viajes_acomodacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `viajes_acomodacion` (
+  `id_acomodacion` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(300) NOT NULL,
+  `descripcion` longtext NOT NULL,
+  `estado` int NOT NULL,
+  PRIMARY KEY (`id_acomodacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `viajes_acomodacion`
+--
+
+LOCK TABLES `viajes_acomodacion` WRITE;
+/*!40000 ALTER TABLE `viajes_acomodacion` DISABLE KEYS */;
+INSERT INTO `viajes_acomodacion` VALUES (1,'Hoteles de 5 Estrellas','Establecimiento de lujo que ofrece una experiencia de hospedaje de alta calidad.',1),(2,'Alquileres para Mochileros','Opcion economica y social para viajeros con un presupuesto limitado, ofreciendole distintos servidios al usuario.',1),(3,'Casas de huespedes','Opcion acogedora y familiar para viajeros que buscan una experiencia mas autentica.',1),(4,'Glamping','Forma de acampar con comodidades de lujo.',1),(5,'Alquiler de Departamentos','Opcion flexible y espaciosa para viajeros que buscan una experiencia mas independiente',1);
+/*!40000 ALTER TABLE `viajes_acomodacion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `viajes_adicion`
+--
+
+DROP TABLE IF EXISTS `viajes_adicion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `viajes_adicion` (
+  `id_adicion` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(20) NOT NULL,
+  `descripcion` longtext NOT NULL,
+  `costo` double NOT NULL,
+  `estado` int NOT NULL,
+  PRIMARY KEY (`id_adicion`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `viajes_adicion`
+--
+
+LOCK TABLES `viajes_adicion` WRITE;
+/*!40000 ALTER TABLE `viajes_adicion` DISABLE KEYS */;
+INSERT INTO `viajes_adicion` VALUES (1,'Explorador de bosque','Caminada guiada por el bosque, observacion de aves y picnic en un area de descanso, incluye equipo de senderismo y botella de agua.',200,1),(2,'Relax en el spa','Un dia relax en un spa con acesso a sauna, baño turco y masaje de 30 minutos',485,1),(3,'Cultura y arte','Tour guiado por museos y galerias de arte, incluye entrada a dos museos y degustacion de comida local en un restaurante seleccionado',323,1),(4,'Aventura urbana','Tour en bicileta por la ciudad, escalada en roca indoor y degustacion de cerveza artesanal, incluye alquier de bicileta y equipo de seguridad',364,1),(5,'Gastronomico','Tour gastronomico que incluye degustacion de vinos, quesos y paltos tipicos, incluye visita a un mercado local y recetas para llevar a casa',404,1);
+/*!40000 ALTER TABLE `viajes_adicion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `viajes_cliente`
+--
+
+DROP TABLE IF EXISTS `viajes_cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `viajes_cliente` (
+  `id_cliente` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `tipo_doc` varchar(20) NOT NULL,
+  `documento` varchar(20) NOT NULL,
+  `telefono` varchar(20) NOT NULL,
+  `correo` varchar(200) NOT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `estado` int NOT NULL,
+  `id_destino` int NOT NULL,
+  PRIMARY KEY (`id_cliente`),
+  UNIQUE KEY `documento` (`documento`),
+  KEY `viajes_cliente_id_destino_ebeaf204_fk_viajes_destino_id_destino` (`id_destino`),
+  CONSTRAINT `viajes_cliente_id_destino_ebeaf204_fk_viajes_destino_id_destino` FOREIGN KEY (`id_destino`) REFERENCES `viajes_destino` (`id_destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `viajes_cliente`
+--
+
+LOCK TABLES `viajes_cliente` WRITE;
+/*!40000 ALTER TABLE `viajes_cliente` DISABLE KEYS */;
+INSERT INTO `viajes_cliente` VALUES (1,'Bembarayo','Cedula','101','310999999','Bemba@gmail.com','Esmeralda 10',1,1),(2,'Puma','Cedula','102','310310','Puma@gmail.com','Silencio 15-14',1,1),(3,'Bombaclaw','Cedula','103','310720','bomba@gmail.com','Niño Jesus 10',1,1),(4,'Rafaga','Cedula','104','3202930','Rafa@gmail.com','Minercol',1,1),(5,'Aguardiente','Cedula','105','9999999','Agua@gmail.com','Minercol',1,1);
+/*!40000 ALTER TABLE `viajes_cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `viajes_destino`
+--
+
+DROP TABLE IF EXISTS `viajes_destino`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `viajes_destino` (
+  `id_destino` int NOT NULL AUTO_INCREMENT,
+  `destino` varchar(200) NOT NULL,
+  `estado` int NOT NULL,
+  PRIMARY KEY (`id_destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `viajes_destino`
+--
+
+LOCK TABLES `viajes_destino` WRITE;
+/*!40000 ALTER TABLE `viajes_destino` DISABLE KEYS */;
+INSERT INTO `viajes_destino` VALUES (1,'Quibdo',1),(2,'Bogota',1),(3,'Bucaramanga',1),(4,'Boyaca',1),(5,'Pereira',1),(6,'Johan',1);
+/*!40000 ALTER TABLE `viajes_destino` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `viajes_detallereserva`
+--
+
+DROP TABLE IF EXISTS `viajes_detallereserva`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `viajes_detallereserva` (
+  `id_detalle_reserva` int NOT NULL AUTO_INCREMENT,
+  `habitaciones` int NOT NULL,
+  `adulto` int NOT NULL,
+  `infante` int NOT NULL,
+  `comentarios` varchar(500) DEFAULT NULL,
+  `id_acomodacion` int DEFAULT NULL,
+  `id_adicion` int DEFAULT NULL,
+  `id_paquete_tour` int DEFAULT NULL,
+  `id_reserva` int NOT NULL,
+  PRIMARY KEY (`id_detalle_reserva`),
+  KEY `viajes_detallereserv_id_acomodacion_0e9a628a_fk_viajes_ac` (`id_acomodacion`),
+  KEY `viajes_detallereserv_id_adicion_490f61e4_fk_viajes_ad` (`id_adicion`),
+  KEY `viajes_detallereserv_id_paquete_tour_723793a0_fk_viajes_pa` (`id_paquete_tour`),
+  KEY `viajes_detallereserv_id_reserva_df9ffbc7_fk_viajes_re` (`id_reserva`),
+  CONSTRAINT `viajes_detallereserv_id_acomodacion_0e9a628a_fk_viajes_ac` FOREIGN KEY (`id_acomodacion`) REFERENCES `viajes_acomodacion` (`id_acomodacion`),
+  CONSTRAINT `viajes_detallereserv_id_adicion_490f61e4_fk_viajes_ad` FOREIGN KEY (`id_adicion`) REFERENCES `viajes_adicion` (`id_adicion`),
+  CONSTRAINT `viajes_detallereserv_id_paquete_tour_723793a0_fk_viajes_pa` FOREIGN KEY (`id_paquete_tour`) REFERENCES `viajes_paquetetour` (`id_paquete_tour`),
+  CONSTRAINT `viajes_detallereserv_id_reserva_df9ffbc7_fk_viajes_re` FOREIGN KEY (`id_reserva`) REFERENCES `viajes_reserva` (`id_reserva`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `viajes_detallereserva`
+--
+
+LOCK TABLES `viajes_detallereserva` WRITE;
+/*!40000 ALTER TABLE `viajes_detallereserva` DISABLE KEYS */;
+INSERT INTO `viajes_detallereserva` VALUES (1,1,1,1,'Ninguno',1,1,1,1),(2,2,2,3,'Ninguno',2,2,2,2),(3,2,2,2,'Ninguno',3,3,3,3),(4,1,1,3,'Ninguno',4,4,4,4),(5,3,4,8,'Ninguno',5,5,5,5);
+/*!40000 ALTER TABLE `viajes_detallereserva` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `viajes_hospedaje`
+--
+
+DROP TABLE IF EXISTS `viajes_hospedaje`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `viajes_hospedaje` (
+  `id_hospedaje` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `correo` varchar(30) NOT NULL,
   `tipo_hospedaje` varchar(30) NOT NULL,
-  `descripcion` varchar(45) NOT NULL,
-  `tarifa_base` float NOT NULL,
-  `id_Destino` int NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`idhospedaje`),
-  KEY `destino_idx` (`id_Destino`),
-  CONSTRAINT `destino` FOREIGN KEY (`id_Destino`) REFERENCES `destino` (`id_Destino`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `descripcion` longtext NOT NULL,
+  `tarifa_base` double NOT NULL,
+  `estado` int NOT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
+  `id_destino` int NOT NULL,
+  `telefono` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_hospedaje`),
+  KEY `viajes_hospedaje_id_destino_70de6455_fk_viajes_de` (`id_destino`),
+  CONSTRAINT `viajes_hospedaje_id_destino_70de6455_fk_viajes_de` FOREIGN KEY (`id_destino`) REFERENCES `viajes_destino` (`id_destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hospedaje`
+-- Dumping data for table `viajes_hospedaje`
 --
 
-LOCK TABLES `hospedaje` WRITE;
-/*!40000 ALTER TABLE `hospedaje` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hospedaje` ENABLE KEYS */;
+LOCK TABLES `viajes_hospedaje` WRITE;
+/*!40000 ALTER TABLE `viajes_hospedaje` DISABLE KEYS */;
+INSERT INTO `viajes_hospedaje` VALUES (1,'Hotel Plaza','Av. Libertad 12, Lima','Hotelplaza@gmail.com','Hotel 4 Estrellas','Ubicado en el corazon de la ciudad, cuenta con habitaciones confortables para aquellos viajeros',606,1,'',1,'1'),(2,'Hostal Los Andes','Jiron de la union 456, Cusco','Andes@gmail.com','Hostal','Hotel acogedor que ofrece habitaciones sencillas pero confortables y un ambiente familiar',121000,1,'',2,'1'),(3,'Departamentos Amueblados MiraFlores','Av. Larco 789, Miraflores','MiraFlores@gmail.com','Departamento Amueblado','Excelente opcion para aquellos que buscan mas espacio y comodidad,',323000,1,'',5,'1'),(4,'Eco Lodge Amazonas','Km 10 Carretera a la Selva, Puerto Maldonado','Ecolodge@gmail.com','Ecolodge','Es un Lodge ubicado en la selva amazonica',242,1,'',3,'1'),(5,'Camping Los Alamos','Km 20 carretera a la costa, Mancora','Alamos@gmail.com','Camping','Ubicado en la playa, ofrece parcelas para tiendas de campaña y caravanillas',40,1,'',2,'1');
+/*!40000 ALTER TABLE `viajes_hospedaje` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hospedaje_acomodacion`
+-- Table structure for table `viajes_hospedajeacomodacion`
 --
 
-DROP TABLE IF EXISTS `hospedaje_acomodacion`;
+DROP TABLE IF EXISTS `viajes_hospedajeacomodacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hospedaje_acomodacion` (
+CREATE TABLE `viajes_hospedajeacomodacion` (
   `id_hospedaje_acomodacion` int NOT NULL AUTO_INCREMENT,
+  `temporada` varchar(20) NOT NULL,
+  `tarifa_agencia` double NOT NULL,
+  `tarifa` double NOT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
   `id_acomodacion` int NOT NULL,
   `id_hospedaje` int NOT NULL,
-  `temporada` varchar(20) NOT NULL,
-  `tarifa_agencia` float NOT NULL,
-  `tarifa` float NOT NULL,
-  `estado_hospeacomo` tinyint NOT NULL,
   PRIMARY KEY (`id_hospedaje_acomodacion`),
-  KEY `id_acomodacion_idx` (`id_acomodacion`),
-  KEY `id_hospedaje_idx` (`id_hospedaje`),
-  CONSTRAINT `id_acomodacion` FOREIGN KEY (`id_acomodacion`) REFERENCES `acomodacion` (`id_acomodacion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_hospedaje` FOREIGN KEY (`id_hospedaje`) REFERENCES `hospedaje` (`idhospedaje`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `viajes_hospedajeacom_id_acomodacion_3167e57a_fk_viajes_ac` (`id_acomodacion`),
+  KEY `viajes_hospedajeacom_id_hospedaje_5e6ec122_fk_viajes_ho` (`id_hospedaje`),
+  CONSTRAINT `viajes_hospedajeacom_id_acomodacion_3167e57a_fk_viajes_ac` FOREIGN KEY (`id_acomodacion`) REFERENCES `viajes_acomodacion` (`id_acomodacion`),
+  CONSTRAINT `viajes_hospedajeacom_id_hospedaje_5e6ec122_fk_viajes_ho` FOREIGN KEY (`id_hospedaje`) REFERENCES `viajes_hospedaje` (`id_hospedaje`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hospedaje_acomodacion`
+-- Dumping data for table `viajes_hospedajeacomodacion`
 --
 
-LOCK TABLES `hospedaje_acomodacion` WRITE;
-/*!40000 ALTER TABLE `hospedaje_acomodacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hospedaje_acomodacion` ENABLE KEYS */;
+LOCK TABLES `viajes_hospedajeacomodacion` WRITE;
+/*!40000 ALTER TABLE `viajes_hospedajeacomodacion` DISABLE KEYS */;
+INSERT INTO `viajes_hospedajeacomodacion` VALUES (1,'Alta',100000,200000,'relative/path/to/upload/descargaz.jfif',1,1),(2,'Baja',200000,50000,'relative/path/to/upload/images_4.jfif',2,2),(3,'Media',200000,60000,'relative/path/to/upload/images_5.jfif',3,3),(4,'Baja',500000,200000,'relative/path/to/upload/images_6.jfif',4,4),(5,'Baja',200000,50000,'relative/path/to/upload/images_7.jfif',5,5);
+/*!40000 ALTER TABLE `viajes_hospedajeacomodacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `mostrar_adicion`
+-- Table structure for table `viajes_paquete`
 --
 
-DROP TABLE IF EXISTS `mostrar_adicion`;
-/*!50001 DROP VIEW IF EXISTS `mostrar_adicion`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `mostrar_adicion` AS SELECT 
- 1 AS `id_Adicion`,
- 1 AS `nombre`,
- 1 AS `descripcion`,
- 1 AS `Costo`,
- 1 AS `estado`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `mostrar_destino`
---
-
-DROP TABLE IF EXISTS `mostrar_destino`;
-/*!50001 DROP VIEW IF EXISTS `mostrar_destino`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `mostrar_destino` AS SELECT 
- 1 AS `id_Destino`,
- 1 AS `Departamento`,
- 1 AS `Ciudad`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `mostrar_permiso_usuario`
---
-
-DROP TABLE IF EXISTS `mostrar_permiso_usuario`;
-/*!50001 DROP VIEW IF EXISTS `mostrar_permiso_usuario`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `mostrar_permiso_usuario` AS SELECT 
- 1 AS `idPermiso_usuario`,
- 1 AS `id_permiso`,
- 1 AS `id_usua`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `mostrar_reserva`
---
-
-DROP TABLE IF EXISTS `mostrar_reserva`;
-/*!50001 DROP VIEW IF EXISTS `mostrar_reserva`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `mostrar_reserva` AS SELECT 
- 1 AS `id`,
- 1 AS `nombre`,
- 1 AS `Fecha`,
- 1 AS `Fecha_inicio`,
- 1 AS `Fecha_fin`,
- 1 AS `Cantidad`,
- 1 AS `Total`,
- 1 AS `Estado_reserva`,
- 1 AS `Metodo_pago`,
- 1 AS `Estado`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `paquete`
---
-
-DROP TABLE IF EXISTS `paquete`;
+DROP TABLE IF EXISTS `viajes_paquete`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `paquete` (
+CREATE TABLE `viajes_paquete` (
   `id_paquete` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
+  `descripcion` longtext NOT NULL,
   `vigencia_inicio` date NOT NULL,
   `vigencia_fin` date NOT NULL,
   `noche` int NOT NULL,
   `incluye` varchar(200) NOT NULL,
   `no_incluye` varchar(200) NOT NULL,
-  `costo` float NOT NULL,
-  `estado` tinyint NOT NULL,
+  `costo` double NOT NULL,
   `disponibilidad` varchar(50) NOT NULL,
+  `estado` int NOT NULL,
   PRIMARY KEY (`id_paquete`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `paquete`
+-- Dumping data for table `viajes_paquete`
 --
 
-LOCK TABLES `paquete` WRITE;
-/*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-/*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
+LOCK TABLES `viajes_paquete` WRITE;
+/*!40000 ALTER TABLE `viajes_paquete` DISABLE KEYS */;
+INSERT INTO `viajes_paquete` VALUES (1,'Aventura en la selva','Disfruta de un recorrido por la selva tropical, donde podras observar la rica biodiversidad de la zona y realizar actividades como senderismo y rafting','2024-08-13','2024-08-30',7,'Carro, Hotel, Comida, Tour','Spa',3000000,'de agosto a diciembre',1),(2,'Paquete \"Exploradores del Eje Cafetero\"','Sumérgete en el corazón del Eje Cafetero y descubre el proceso del café colombiano, visita pintorescos pueblos como Salento y Filandia, y disfruta de paisajes únicos como el Valle del Cocora.','2024-08-06','2024-08-21',7,'Transporte terrestre desde y hacia la ciudad de origen. Alojamiento en hoteles rurales. Desayunos y cenas. Entradas a fincas cafeteras con tour guiado y cata de café.','Almuerzos. Actividades adicionales no mencionadas en el itinerario. Gastos personales y propinas.',3000000,'Todo el año, con salidas diarias.',1),(3,'Paquete \"Aventurero\"','Vive la magia de las selvas colombiano, con una experiencia que incluye navegación por el río, caminatas por la selva, interacción con comunidades indígenas y avistamiento de flora y fauna exótica.','2024-08-14','2024-08-22',12,'Alojamiento en eco-lodges. Desayunos, almuerzos y cenas. Excursiones guiadas por la selva y visitas a comunidades indígenas y Seguro de viaje.','Gastos personales y propinas. Bebidas alcohólicas. Actividades adicionales no especificadas en el itinerario.',2000000,'De mayo a noviembre (temporada seca).',1),(4,'Paquete \"Naturaleza y Tradición en el Pacífico\"','Explora el Pacífico colombiano con un paquete que te lleva a disfrutar de las playas de Nuquí, la cultura afrocolombiana y la increíble biodiversidad de la región.','2024-08-14','2024-08-23',20,'Alojamiento en eco-lodge frente al mar. Desayunos, almuerzos y cenas. Excursiones guiadas a cascadas, termales y playas vírgenes. Talleres culturales de música y danza tradicional. Seguro de viaje.','Gastos personales y propinas. Bebidas alcohólicas. Actividades adicionales no mencionadas.',1,'De julio a octubre',1),(5,'Paquete \"Ruta de los Llanos Orientales\"','Aventúrate en los vastos paisajes de los Llanos Orientales de Colombia, donde podrás disfrutar de la cultura llanera, safaris de fauna silvestre y espectaculares atardeceres.','2024-08-14','2024-08-29',7,'Alojamiento en estancias turísticas con encanto llanero. Desayunos, almuerzos y cenas. Safari de fauna con avistamiento de chigüiros','Gastos personales y propinas. Bebidas alcohólicas. Actividades adicionales no mencionadas en el itinerario.',5000000,'De diciembre a abril (temporada seca).',1);
+/*!40000 ALTER TABLE `viajes_paquete` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `paquete_tour`
+-- Table structure for table `viajes_paquetetour`
 --
 
-DROP TABLE IF EXISTS `paquete_tour`;
+DROP TABLE IF EXISTS `viajes_paquetetour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `paquete_tour` (
-  `idPaquete_tour` int NOT NULL AUTO_INCREMENT,
-  `id_tour` int NOT NULL,
+CREATE TABLE `viajes_paquetetour` (
+  `id_paquete_tour` int NOT NULL AUTO_INCREMENT,
   `id_paquete` int NOT NULL,
-  `condicion` tinyint NOT NULL,
-  PRIMARY KEY (`idPaquete_tour`),
-  KEY `paquete_idx` (`id_paquete`),
-  KEY `tour_idx` (`id_tour`),
-  CONSTRAINT `paquete` FOREIGN KEY (`id_paquete`) REFERENCES `paquete` (`id_paquete`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `tour` FOREIGN KEY (`id_tour`) REFERENCES `tour` (`id_tour`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_tour` int NOT NULL,
+  `id_hospedaje_acomodacion` int NOT NULL,
+  PRIMARY KEY (`id_paquete_tour`),
+  KEY `viajes_paquetetour_id_tour_32cc1204_fk_viajes_tour_id_tour` (`id_tour`),
+  KEY `viajes_paquetetour_id_paquete_11483777_fk_viajes_pa` (`id_paquete`),
+  KEY `viajes_paquetetour_id_hospedaje_acomoda_e646b972_fk_viajes_ho` (`id_hospedaje_acomodacion`),
+  CONSTRAINT `viajes_paquetetour_id_hospedaje_acomoda_e646b972_fk_viajes_ho` FOREIGN KEY (`id_hospedaje_acomodacion`) REFERENCES `viajes_hospedajeacomodacion` (`id_hospedaje_acomodacion`),
+  CONSTRAINT `viajes_paquetetour_id_paquete_11483777_fk_viajes_pa` FOREIGN KEY (`id_paquete`) REFERENCES `viajes_paquete` (`id_paquete`),
+  CONSTRAINT `viajes_paquetetour_id_tour_32cc1204_fk_viajes_tour_id_tour` FOREIGN KEY (`id_tour`) REFERENCES `viajes_tour` (`id_tour`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `paquete_tour`
+-- Dumping data for table `viajes_paquetetour`
 --
 
-LOCK TABLES `paquete_tour` WRITE;
-/*!40000 ALTER TABLE `paquete_tour` DISABLE KEYS */;
-/*!40000 ALTER TABLE `paquete_tour` ENABLE KEYS */;
+LOCK TABLES `viajes_paquetetour` WRITE;
+/*!40000 ALTER TABLE `viajes_paquetetour` DISABLE KEYS */;
+INSERT INTO `viajes_paquetetour` VALUES (1,1,1,1),(2,2,2,1),(3,3,3,1),(4,4,4,1),(5,5,5,1);
+/*!40000 ALTER TABLE `viajes_paquetetour` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `paquete_vista`
+-- Table structure for table `viajes_reserva`
 --
 
-DROP TABLE IF EXISTS `paquete_vista`;
-/*!50001 DROP VIEW IF EXISTS `paquete_vista`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `paquete_vista` AS SELECT 
- 1 AS `id_paquete`,
- 1 AS `nombre`,
- 1 AS `descripcion`,
- 1 AS `vigencia_inicio`,
- 1 AS `vigencia_fin`,
- 1 AS `noche`,
- 1 AS `incluye`,
- 1 AS `no_incluye`,
- 1 AS `costo`,
- 1 AS `estado`,
- 1 AS `disponibilidad`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `permiso`
---
-
-DROP TABLE IF EXISTS `permiso`;
+DROP TABLE IF EXISTS `viajes_reserva`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `permiso` (
-  `idpermiso` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(50) NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idpermiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=9877 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `viajes_reserva` (
+  `id_reserva` int NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `cantidad` int NOT NULL,
+  `total` double NOT NULL,
+  `estado_reserva` varchar(20) NOT NULL,
+  `metodo_pago` varchar(20) NOT NULL,
+  `estado` int NOT NULL,
+  `id_cliente` int NOT NULL,
+  PRIMARY KEY (`id_reserva`),
+  KEY `viajes_reserva_id_cliente_7981e356_fk_viajes_cliente_id_cliente` (`id_cliente`),
+  CONSTRAINT `viajes_reserva_id_cliente_7981e356_fk_viajes_cliente_id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `viajes_cliente` (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `permiso`
+-- Dumping data for table `viajes_reserva`
 --
 
-LOCK TABLES `permiso` WRITE;
-/*!40000 ALTER TABLE `permiso` DISABLE KEYS */;
-/*!40000 ALTER TABLE `permiso` ENABLE KEYS */;
+LOCK TABLES `viajes_reserva` WRITE;
+/*!40000 ALTER TABLE `viajes_reserva` DISABLE KEYS */;
+INSERT INTO `viajes_reserva` VALUES (1,'2024-08-01','2024-08-14','2024-08-30',1,1,'Activo','Efectivo',1,1),(2,'2024-08-02','2024-08-20','2024-08-30',1,8,'Activo','Efectivo',1,2),(3,'2024-08-01','2024-08-16','2024-08-22',1,3,'Activo','Efectivo',1,4),(4,'2024-08-20','2024-08-24','2024-08-30',4,5,'Activo','Efectivo',1,3),(5,'2024-07-09','2024-08-01','2024-08-05',1,7,'Activo','Efectivo',1,5);
+/*!40000 ALTER TABLE `viajes_reserva` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `permiso_usuario`
+-- Table structure for table `viajes_tour`
 --
 
-DROP TABLE IF EXISTS `permiso_usuario`;
+DROP TABLE IF EXISTS `viajes_tour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `permiso_usuario` (
-  `idPermiso_usuario` int NOT NULL AUTO_INCREMENT,
-  `id_permiso` int NOT NULL,
-  `id_usua` int NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`idPermiso_usuario`),
-  KEY `id_usua_idx` (`id_usua`),
-  KEY `id_permiso_idx` (`id_permiso`),
-  CONSTRAINT `id_permiso` FOREIGN KEY (`id_permiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_usua` FOREIGN KEY (`id_usua`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `permiso_usuario`
---
-
-LOCK TABLES `permiso_usuario` WRITE;
-/*!40000 ALTER TABLE `permiso_usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `permiso_usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `reserva`
---
-
-DROP TABLE IF EXISTS `reserva`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `reserva` (
-  `idReserva` int NOT NULL AUTO_INCREMENT,
-  `id_usuar` int NOT NULL,
-  `Fecha` date NOT NULL,
-  `Fecha_inicio` date NOT NULL,
-  `Fecha_fin` date NOT NULL,
-  `Cantidad` int NOT NULL,
-  `Total` float NOT NULL,
-  `Estado_reserva` varchar(25) NOT NULL,
-  `Metodo_pago` varchar(25) NOT NULL,
-  `Estado` tinyint NOT NULL,
-  PRIMARY KEY (`idReserva`),
-  KEY `id_usuario_idx` (`id_usuar`),
-  KEY `idReserva_idx` (`id_usuar`),
-  CONSTRAINT `id_usuar` FOREIGN KEY (`id_usuar`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reserva`
---
-
-LOCK TABLES `reserva` WRITE;
-/*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tour`
---
-
-DROP TABLE IF EXISTS `tour`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tour` (
+CREATE TABLE `viajes_tour` (
   `id_tour` int NOT NULL AUTO_INCREMENT,
-  `nombre_tour` varchar(50) NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
-  `valor` float NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` longtext,
+  `valor` double DEFAULT NULL,
   `duracion` int NOT NULL,
+  `estado` int NOT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
   `id_destino` int NOT NULL,
-  `estado` tinyint NOT NULL,
-  `imagen` blob NOT NULL,
   PRIMARY KEY (`id_tour`),
-  KEY `destino_idx` (`id_destino`),
-  CONSTRAINT `destinos` FOREIGN KEY (`id_destino`) REFERENCES `destino` (`id_Destino`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+  KEY `viajes_tour_id_destino_7f7b6e4c_fk_viajes_destino_id_destino` (`id_destino`),
+  CONSTRAINT `viajes_tour_id_destino_7f7b6e4c_fk_viajes_destino_id_destino` FOREIGN KEY (`id_destino`) REFERENCES `viajes_destino` (`id_destino`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tour`
+-- Dumping data for table `viajes_tour`
 --
 
-LOCK TABLES `tour` WRITE;
-/*!40000 ALTER TABLE `tour` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tour` ENABLE KEYS */;
+LOCK TABLES `viajes_tour` WRITE;
+/*!40000 ALTER TABLE `viajes_tour` DISABLE KEYS */;
+INSERT INTO `viajes_tour` VALUES (1,'Tour Cafetero \"Aromas de Colombia\"','Embárcate en un viaje a la región del Eje Cafetero, donde podrás explorar los procesos tradicionales del café, desde la planta hasta la taza, asi como tambien visitarás haciendas cafetaleras.',500,1,1,'relative/path/to/upload/22.jfif',1),(2,'Tour Quibdoseño','Descubre la historia y belleza de Quibdo, una joya colonial llena de color y vida. Este tour incluye una visita a los pueblos cercanos, donde podrás relajarte en playas paradisíacas.',200,1,1,'relative/path/to/upload/images.jfif',1),(3,'Tour de Naturaleza','Sumérgete en la biodiversidad de Bucaramanga. Este tour te lleva a explorar la selva, conocer comunidades indígenas, y Disfrutar de la flora y fauna que ofrece.',1000000,1,1,'relative/path/to/upload/images_1.jfif',3),(4,'Tour de Aventura','Adéntrate en Boyaca, y disfruta explorar una de sus montañas costeras altas. Este tour incluye caminatas alrededor de Boyaca',200000,1,1,'relative/path/to/upload/images_2.jfif',4),(5,'Tour Cultural','Explora la rica herencia cultural de Pereira, con este tour que incluye visitas a la vibrante ciudad de Pereira. Donde participaras en talleres de música y danza tradicional.',350000,1,1,'relative/path/to/upload/images_3.jfif',5);
+/*!40000 ALTER TABLE `viajes_tour` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `usuario`
+-- Dumping routines for database 'agencia'
 --
-
-DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario` (
-  `idUsuario` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(200) NOT NULL,
-  `tipo_doc` varchar(20) NOT NULL,
-  `documento` varchar(20) NOT NULL,
-  `correo` varchar(200) NOT NULL,
-  `sexo` int NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `rol` int NOT NULL,
-  `login` varchar(30) NOT NULL,
-  `clave` varchar(40) NOT NULL,
-  `fecha_creacion` date NOT NULL,
-  `estado` tinyint NOT NULL,
-  PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Temporary view structure for view `ver_permisos`
---
-
-DROP TABLE IF EXISTS `ver_permisos`;
-/*!50001 DROP VIEW IF EXISTS `ver_permisos`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ver_permisos` AS SELECT 
- 1 AS `idpermiso`,
- 1 AS `Nombre`,
- 1 AS `Estado`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_acomodacion`
---
-
-DROP TABLE IF EXISTS `vista_acomodacion`;
-/*!50001 DROP VIEW IF EXISTS `vista_acomodacion`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_acomodacion` AS SELECT 
- 1 AS `id_Acomodación`,
- 1 AS `Nombre`,
- 1 AS `Descripción`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_cliente`
---
-
-DROP TABLE IF EXISTS `vista_cliente`;
-/*!50001 DROP VIEW IF EXISTS `vista_cliente`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_cliente` AS SELECT 
- 1 AS `idcliente`,
- 1 AS `Nombre`,
- 1 AS `Telefono`,
- 1 AS `Correo`,
- 1 AS `Direccion`,
- 1 AS `Cantidad`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_detalle_reserva`
---
-
-DROP TABLE IF EXISTS `vista_detalle_reserva`;
-/*!50001 DROP VIEW IF EXISTS `vista_detalle_reserva`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_detalle_reserva` AS SELECT 
- 1 AS `Id`,
- 1 AS `Estado_Reserva`,
- 1 AS `Id_Paquete_Tour`,
- 1 AS `Acomodacion`,
- 1 AS `Adicion`,
- 1 AS `Habitaciones`,
- 1 AS `Adulto`,
- 1 AS `Infante`,
- 1 AS `Comentarios`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_hospedaje`
---
-
-DROP TABLE IF EXISTS `vista_hospedaje`;
-/*!50001 DROP VIEW IF EXISTS `vista_hospedaje`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_hospedaje` AS SELECT 
- 1 AS `idhospedaje`,
- 1 AS `nombre`,
- 1 AS `direccion`,
- 1 AS `correo`,
- 1 AS `tipo_hospedaje`,
- 1 AS `descripcion`,
- 1 AS `tarifa_base`,
- 1 AS `Ciudad`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_hospedaje_acomodacion`
---
-
-DROP TABLE IF EXISTS `vista_hospedaje_acomodacion`;
-/*!50001 DROP VIEW IF EXISTS `vista_hospedaje_acomodacion`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_hospedaje_acomodacion` AS SELECT 
- 1 AS `Id`,
- 1 AS `Acomodación`,
- 1 AS `Hospedaje`,
- 1 AS `Temporada`,
- 1 AS `Tarifa_Agencia`,
- 1 AS `Tarifa`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_paquete_tour`
---
-
-DROP TABLE IF EXISTS `vista_paquete_tour`;
-/*!50001 DROP VIEW IF EXISTS `vista_paquete_tour`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_paquete_tour` AS SELECT 
- 1 AS `idUsuario`,
- 1 AS `tour_nombre`,
- 1 AS `nombre`,
- 1 AS `condicion`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_tour`
---
-
-DROP TABLE IF EXISTS `vista_tour`;
-/*!50001 DROP VIEW IF EXISTS `vista_tour`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_tour` AS SELECT 
- 1 AS `id_tour`,
- 1 AS `nombre_tour`,
- 1 AS `descripcion`,
- 1 AS `valor`,
- 1 AS `duracion`,
- 1 AS `Ciudad`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `vista_usuario`
---
-
-DROP TABLE IF EXISTS `vista_usuario`;
-/*!50001 DROP VIEW IF EXISTS `vista_usuario`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `vista_usuario` AS SELECT 
- 1 AS `idUsuario`,
- 1 AS `nombre`,
- 1 AS `tipo_doc`,
- 1 AS `documento`,
- 1 AS `correo`,
- 1 AS `sexo`,
- 1 AS `direccion`,
- 1 AS `rol`,
- 1 AS `login`,
- 1 AS `clave`,
- 1 AS `fecha_creacion`,
- 1 AS `estado`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Dumping events for database 'proyecto_agencia'
---
-
---
--- Dumping routines for database 'proyecto_agencia'
---
-/*!50003 DROP PROCEDURE IF EXISTS `actualizacion_destino` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizacion_destino`(id_desti int,depto varchar(50), cidad varchar(45),esta tinyint)
-BEGIN
-update destino set id_Destino=id_desti, Departamento=depto, ciudad=cidad, estado=esta where id_Destino = id_desti;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_acomodacion`(in idacomoda int, in nom varchar(100), in descrip varchar(300))
-BEGIN
-update acomodacion set nombre = nom, descripcion = descrip where id_acomodacion = idacomoda;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Actualizar_Cliente` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Actualizar_Cliente`(in idcli int, in nom varchar(45), in tele varchar(45), in corr varchar(45), in dire varchar(45), in canti varchar(45))
-BEGIN
-update cliente set Nombre = nom, Telefono = tele, Correo = corr, Direccion = dire,  Cantidad = canti where idcliente = idcli;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_detalle_reser` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_detalle_reser`(in id_detalle_reser int, in id_reserv int, in id_paque_tour int, in id_acomoda int, in id_adicio int, in habitacio int, in adult int, in infant int, in comentar varchar(500))
-BEGIN
-update detalle_reserva set id_reserva = id_reserv, id_paquete_tour = id_paque_tour, id_acomodacion = id_acomoda, id_adicion = id_adicio, habitaciones = habitacio, adulto = adult, infante = infant, comentarios = comentar where id_detalle_reserva = id_detalle_reser;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Actualizar_hospedaje` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Actualizar_hospedaje`(in idhospe int, in nom varchar(100), in dir varchar(50), in corr varchar(30), in tipo_hospe varchar(45), in descrip varchar(45), in tari_base float, in id_Des int)
-BEGIN
-update hospedaje set nombre = nom , direccion = dir , correo = corr, tipo_hospedaje = tipo_hospe, descripcion = descrip, tari_base = tarifa_base, id_Destino = id_Des where idhospedaje = idhospe;
-
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_hospedaje_acomoda` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_hospedaje_acomoda`(in id_hospeacom int, in id_acomoda int, in id_hospe int, in tempo varchar(20), in tari_age float, in tari float)
-BEGIN
-update hospedaje_acomodacion set id_acomodacion = id_acomoda, id_hospedaje = id_hospe, temporada = tempo, tarifa_agencia = tari_age, tarifa = tari where id_hospedaje_acomodacion = id_hospeacom;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_paquete` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_paquete`(in idpaquete int, in nomb varchar(200), in descr varchar(500), in vigenciainicio date, in vigenciafin date, in noch int, in inclu varchar(200), noincluye varchar(200), in cost float, in disponi varchar(50))
-BEGIN
-update paquete set id_paquete = idpaquete, nombre = nomb, descripcion = descr, vigencia_inicio = vigenciainicio, vigencia_fin = vigenciafin, noche = noch, incluye = inclu, no_incluye = noincluye, costo = cost, disponibilidad = disponi where id_paquete = idpaquete;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_paquete_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_paquete_tour`(in Idpaqto int, in idtur int, in idpaque int)
-BEGIN
-update paquete_tour set idPaquete_tour = Idpaqto, id_tour = idtur, id_paquete = idpaque, condicion = '1' where idPaquete_tour = Idpaqto;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_reseva` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_reseva`(in idReserv int, in id_usuar int, in fech date, in fecha_inic date,in fech_fin date, in canti int,in total float, in estado_reser varchar(25), in metodo_pag varchar(25),in imagen blob)
-BEGIN
-update reserva set idReserva = idReserva, id_usuar = id_usuar , fecha = fech, fecha_inicio = fecha_inic, fecha_fin = fech_fin,cantidad = canti, total = total, estado_reserva =estado_reser,metodo_pago = metodo_pag,imagen =imag where idReserva = idReserv;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_tour`(
-    IN p_id_tour INT,
-    IN p_nomb_tour VARCHAR(50),
-    IN p_descrip VARCHAR (200),
-    IN p_valo FLOAT,
-    IN p_dura INT,
-    IN p_id_desti INT
-)
-BEGIN
-    UPDATE tour
-    SET 
-        nombre_tour = p_nomb_tour,
-        descripcion = p_descrip,
-        valor = p_valo,
-        duracion = p_dura,        
-        id_destino = p_id_desti
-    WHERE 
-        id_tour = p_id_tour;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_usuario`(in idusu int, in Nomb varchar(200), in tidoc varchar(20), in docu varchar(20), in cor varchar(200), in sex int, in dire varchar(50), in ro int, in log varchar(30), in cla varchar(40), in fecrea date)
-BEGIN
-update paquete set idUsuario = IdPaq, Nombre = Nomb, tipo_doc= tidoc, documento = docu, correo = cor, sexo = sex, direccion = dire, rol = ro, login = log, clave = cla, fecha_creacion = fecrea, estado = '0' where idUsuario = idusu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actualiza_permiso_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualiza_permiso_usuario`(id_permiso_usu int, id_permi int, id_usu int )
-BEGIN
-update permiso_usuario set idPermiso_usuario=id_permiso_usu, id_permiso=id_permi, id_usuario=id_usu where idPermiso_usuario = id_permiso_usu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actulizacion_permiso` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actulizacion_permiso`(idpermi int, nom varchar (50),est tinyint)
-BEGIN
-update permiso set idpermiso=idpermi, nombre=nom, estado=est where idpermiso = idpermi; 
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `atualizar_adicion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `atualizar_adicion`(in id_adi int,in nom varchar(20),in descrip varchar(200),in cost float)
-BEGIN
-update adicion set Nombre=nom,Descripcion=descrip,Costo=cost where id_Adicion=id_adi;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_acomodacion`(in valor int)
-BEGIN
-select * from acomodacion where id_acomodacion = valor;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_adicion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_adicion`(in buscar int)
-BEGIN
-select * from adicion where id_adicion= buscar;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Buscar_cliente` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_cliente`(in idcli int)
-BEGIN
-select * from cliente where idcli = idcliente;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_destino` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_destino`(in id_desti int)
-BEGIN
-select * from destino where id_Destino = id_desti;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_detalle_reserv` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_detalle_reserv`(in valor int)
-BEGIN
-select * from detalle_reserva where id_detalle_reserva = valor;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_hospedaje` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_hospedaje`(in id_hotel int)
-BEGIN
-select * from hospedaje where idhospedaje = id_hotel;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_hospe_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_hospe_acomodacion`(in valor int)
-BEGIN
-select * from hospedaje_acomodacion where id_hospedaje_acomodacion = valor;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_paquete` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_paquete`(in idpaq int)
-BEGIN
-select * from paquete where id_paquete = idpaq;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_paquete_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_paquete_tour`(in idpaqto int)
-BEGIN
-select * from paquete_tour where idPaquete_Tour = idpaqto;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_permiso` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_permiso`(in idpermi int)
-BEGIN
-select * from permiso where idpermiso = idpermi;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_permiso_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_permiso_usuario`(in idpermiso_usu int )
-BEGIN
-select * from permiso_usuario where idPermiso_usuario = idpermiso_usu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_reserva` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_reserva`(in valor int)
-BEGIN
-select * from reserva where idReserva=valor;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_tour`(
-    IN valor INT
-)
-BEGIN
-    SELECT 
-        *
-    FROM 
-        tour t 
-    WHERE 
-        t.id_tour = valor;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `buscar_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_usuario`(in idusu int)
-BEGIN
-select * from usuario where idUsuario = idusu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_acomodacion`(in valor varchar(45))
-BEGIN
-select * from vista_acomodacion where id_Acomodación like concat('%',valor,'%') || Nombre like concat('%',valor,'%') || Descripción like concat('%',valor,'%');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_adicion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_adicion`(in valor varchar(45))
-BEGIN
-select * from mostrar_adicion where id_adicion like concat('%',valor,'%')   
-|| nombre  like concat('%',valor,'%') ||descripcion like concat('%',valor,'%') 
-|| costo like concat('%',valor,'%') ;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `consultar_destino` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1289,47 +661,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_destino`(in valor varchar(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_destino`(in valor int)
 BEGIN
-select * from mostrar_destino where id_Destino like concat ('%',valor,'%') || Departamento like concat ('%',valor,'%') || Ciudad like concat ('%',valor,'%'); 
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_detalle_reserv` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_detalle_reserv`(in valor varchar(45))
-BEGIN
-select * from vista_detalle_reserva where Id like concat('%',valor,'%') || Estado_Reserva like concat('%',valor,'%') || Id_Paquete_Tour like concat('%',valor,'%') || Acomodacion like concat('%',valor,'%') || Adicion like concat('%',valor,'%') || Habitaciones like concat('%',valor,'%') || Adulto like concat('%',valor,'%') || Infante like concat('%',valor,'%') || Comentarios like concat('%',valor,'%');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_hospedaje` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_hospedaje`(in valor varchar(45))
-BEGIN
-select * from vista_hospedaje where idhospedaje like concat(`%`, valor) || nombre like concat(`%`,valor,`%`) ||  direccion like concat(`%`,valor,`%`) ||  correo like concat(`%`,valor,`%`) ||  tipo_hospedaje like concat(`%`,valor,`%`) || descripcion like concat(`%`,valor,`%`) ||  tarifa_base like concat(`%`,valor,`%`) ||  Ciudad like concat(`%`,valor,`%`);
+select viajes_paquetetour.id_paquete_tour 'ID_Paquete_Tour', concat(viajes_paquete.nombre ,'   ',viajes_tour.nombre, '   ', viajes_hospedaje.tipo_hospedaje, '   ', viajes_hospedaje.nombre, '   ') 'Informacion', viajes_paquete.descripcion 'Descripcion', viajes_paquete.vigencia_inicio 'Vigencia_Inicio', viajes_paquete.vigencia_fin 'Vigencia_Fin', viajes_paquete.noche 'Noches', viajes_paquete.noche + 1 'Dias',viajes_paquete.incluye 'Incluye', viajes_paquete.no_incluye  'No_Incluye', viajes_paquete.costo 'Costo', viajes_paquete.disponibilidad 'Disponibilidad', viajes_paquete.estado 'Estado', viajes_tour.nombre 'Nombre_Tour', viajes_tour.descripcion 'Tour_Descripcion', viajes_tour.valor 'Tour_Valor', viajes_tour.duracion'Tour_Duracion', viajes_tour.estado 'Estado_Tour', viajes_tour.imagen'Imagen_Tour', viajes_hospedaje.nombre 'Nombre_H', viajes_hospedaje.direccion'Direccion_H', viajes_hospedaje.correo'Correo_H',viajes_hospedaje.descripcion'Descripcion_Hospedaje',viajes_hospedaje.tarifa_base'Tarifa_Base_H', viajes_hospedaje.estado'Estado_Hospedaje',viajes_hospedaje.imagen'Imagen_Hospedaje',viajes_hospedaje.telefono'Telefono_Hospedaje',viajes_destino.destino'Destino_Del_Viaje',viajes_acomodacion.nombre'Nombre_Acomodacion',viajes_acomodacion.descripcion'Descripcion_Acomodacion',viajes_acomodacion.estado'Estado_Acomodacion' from viajes_paquetetour inner join viajes_paquete on viajes_paquete.id_paquete = viajes_paquetetour.id_paquete inner join viajes_tour on viajes_tour.id_tour = viajes_paquetetour.id_tour inner join viajes_hospedajeacomodacion on viajes_paquetetour.id_hospedaje_acomodacion = viajes_hospedajeacomodacion.id_hospedaje_acomodacion inner join viajes_hospedaje on viajes_hospedaje.id_hospedaje = viajes_hospedajeacomodacion.id_hospedaje inner join viajes_destino on viajes_destino.id_destino = viajes_tour.id_destino inner join viajes_acomodacion on viajes_acomodacion.id_acomodacion = viajes_hospedajeacomodacion.id_acomodacion WHERE viajes_paquetetour.id_paquete_tour LIKE CONCAT('%', valor, '%')  and viajes_tour.estado='1';
 
 END ;;
 DELIMITER ;
@@ -1337,26 +671,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_hospedaje_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_hospedaje_acomodacion`(in valor varchar(45))
-BEGIN
-select * from vista_hospedaje_acomodacion where Id like concat('%',valor,'%') || Acomodación like concat('%',valor,'%') || Hospedaje like concat('%',valor,'%') || Temporada like concat('%',valor,'%') || Tarifa_Agencia like concat('%',valor,'%') || tarifa like concat('%',valor,'%'); 
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_paquete` */;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_detallepaquetetour` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1366,16 +681,17 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_paquete`(in valor varchar(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_detallepaquetetour`(in valor int)
 BEGIN
-select * from paquete_vista where id_paquete like concat('%', valor,'%') || nombre like concat('%', valor,'%') || descripcion like concat('%', valor,'%') || vigencia_inicio like concat('%', valor,'%') || vigencia_fin like concat('%', valor,'%') || noche like concat('%', valor,'%') || incluye like concat('%', valor,'%') || no_incluye like concat('%', valor,'%') || costo like concat('%', valor,'%') || estado like concat('%', valor,'%') ||disponibilidad like concat('%', valor,'%');
+select viajes_paquetetour.id_paquete_tour 'ID_Paquete_Tour', concat(viajes_paquete.nombre ,'   ',viajes_tour.nombre, '   ', viajes_hospedaje.tipo_hospedaje, '   ', viajes_hospedaje.nombre, '   ') 'Informacion', viajes_paquete.descripcion 'Descripcion', viajes_paquete.vigencia_inicio 'Vigencia_Inicio', viajes_paquete.vigencia_fin 'Vigencia_Fin', viajes_paquete.noche 'Noches', viajes_paquete.noche + 1 'Dias',viajes_paquete.incluye 'Incluye', viajes_paquete.no_incluye  'No_Incluye', viajes_paquete.costo 'Costo', viajes_paquete.disponibilidad 'Disponibilidad', viajes_paquete.estado 'Estado', viajes_tour.nombre 'Nombre_Tour', viajes_tour.descripcion 'Tour_Descripcion', viajes_tour.valor 'Tour_Valor', viajes_tour.duracion'Tour_Duracion', viajes_tour.estado 'Estado_Tour', viajes_tour.imagen'Imagen_Tour', viajes_hospedaje.nombre 'Nombre_H', viajes_hospedaje.direccion'Direccion_H', viajes_hospedaje.correo'Correo_H',viajes_hospedaje.descripcion'Descripcion_Hospedaje',viajes_hospedaje.tarifa_base'Tarifa_Base_H', viajes_hospedaje.estado'Estado_Hospedaje',viajes_hospedaje.imagen'Imagen_Hospedaje',viajes_hospedaje.telefono'Telefono_Hospedaje',viajes_destino.destino'Destino_Del_Viaje',viajes_acomodacion.nombre'Nombre_Acomodacion',viajes_acomodacion.descripcion'Descripcion_Acomodacion',viajes_acomodacion.estado'Estado_Acomodacion' from viajes_paquetetour inner join viajes_paquete on viajes_paquete.id_paquete = viajes_paquetetour.id_paquete inner join viajes_tour on viajes_tour.id_tour = viajes_paquetetour.id_tour inner join viajes_hospedajeacomodacion on viajes_paquetetour.id_hospedaje_acomodacion = viajes_hospedajeacomodacion.id_hospedaje_acomodacion inner join viajes_hospedaje on viajes_hospedaje.id_hospedaje = viajes_hospedajeacomodacion.id_hospedaje inner join viajes_destino on viajes_destino.id_destino = viajes_tour.id_destino inner join viajes_acomodacion on viajes_acomodacion.id_acomodacion = viajes_hospedajeacomodacion.id_acomodacion WHERE viajes_paquetetour.id_paquete_tour LIKE CONCAT('%', valor, '%')  and viajes_tour.estado='1';
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_permiso_usuario` */;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_paquete_tour` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1385,35 +701,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_permiso_usuario`(in valor varchar(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_paquete_tour`(in valor varchar(100))
 BEGIN
-select * from mostrar_permiso_usuario where idPermiso_usuario like concat('%', valor, '%') || id_permiso like concat('%', valor, '%') || id_usuario like concat('%', valor, '%');
+select viajes_paquetetour.id_paquete_tour 'ID_Paquete_Tour', concat(viajes_paquete.nombre ,'   ',viajes_tour.nombre, '   ', viajes_hospedaje.tipo_hospedaje, '   ', viajes_hospedaje.nombre, '   ') 'Informacion', viajes_paquete.descripcion 'Descripcion', viajes_paquete.vigencia_inicio 'Vigencia_Inicio', viajes_paquete.vigencia_fin 'Vigencia_Fin', viajes_paquete.noche 'Noches', viajes_paquete.noche + 1 'Dias',viajes_paquete.incluye 'Incluye', viajes_paquete.no_incluye  'No_Incluye', viajes_paquete.costo 'Costo', viajes_paquete.disponibilidad 'Disponibilidad', viajes_paquete.estado 'Estado', viajes_tour.nombre 'Nombre_Tour', viajes_tour.descripcion 'Tour_Descripcion', viajes_tour.valor 'Tour_Valor', viajes_tour.duracion'Tour_Duracion', viajes_tour.estado 'Estado_Tour', viajes_tour.imagen'Imagen_Tour', viajes_hospedaje.nombre 'Nombre_H', viajes_hospedaje.direccion'Direccion_H', viajes_hospedaje.correo'Correo_H',viajes_hospedaje.descripcion'Descripcion_Hospedaje',viajes_hospedaje.tarifa_base'Tarifa_Base_H', viajes_hospedaje.estado'Estado_Hospedaje',viajes_hospedaje.imagen'Imagen_Hospedaje',viajes_hospedaje.telefono'Telefono_Hospedaje',viajes_destino.destino'Destino_Del_Viaje',viajes_acomodacion.nombre'Nombre_Acomodacion',viajes_acomodacion.descripcion'Descripcion_Acomodacion',viajes_acomodacion.estado'Estado_Acomodacion' from viajes_paquetetour inner join viajes_paquete on viajes_paquete.id_paquete = viajes_paquetetour.id_paquete inner join viajes_tour on viajes_tour.id_tour = viajes_paquetetour.id_tour inner join viajes_hospedajeacomodacion on viajes_paquetetour.id_hospedaje_acomodacion = viajes_hospedajeacomodacion.id_hospedaje_acomodacion inner join viajes_hospedaje on viajes_hospedaje.id_hospedaje = viajes_hospedajeacomodacion.id_hospedaje inner join viajes_destino on viajes_destino.id_destino = viajes_tour.id_destino inner join viajes_acomodacion on viajes_acomodacion.id_acomodacion = viajes_hospedajeacomodacion.id_acomodacion WHERE viajes_destino.destino LIKE CONCAT('%', valor, '%')  and viajes_destino.estado='1';
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_reserva` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_reserva`(in valor varchar(45))
-BEGIN
-select * from mostrar_reserva where id like concat('%',valor,'%')|| nombre like concat('%',valor,'%')|| fecha like concat('%',valor,'%')|| fecha_inicio like concat('%',valor,'%')|| fecha_fin like concat('%',valor,'%')|| cantidad like concat('%',valor,'%')|| Total like concat('%',valor,'%')|| Estado_reserva like concat('%',valor,'%')|| Metodo_pago like concat('%',valor,'%')|| Estado like concat('%',valor,'%');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consultar_tour` */;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_viajes_destino` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1423,845 +720,15 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_tour`(in valor varchar(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_viajes_destino`(in valor varchar(100))
 BEGIN
-select * from vista_tour where id_tour like concat('%',valor,'%') || nombre_tour like concat('%',valor,'%') || descripcion like concat('%',valor,'%') || valor like concat('%',valor,'%') || duracion like concat('%',valor,'%') || ciudad like concat('%',valor,'%');
+SELECT id_destino, destino from viajes_destino WHERE destino LIKE CONCAT('%', valor, '%')  and estado='1';
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consulta_cliente` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consulta_cliente`(in valor varchar(45))
-BEGIN
-select * from vista_cliente where idcliente like concat('%', valor, '%') || Nombre like concat('%', valor, '%') || Telefono like concat('%', valor, '%') || Correo like concat('%', valor, '%') ||  Direccion like concat('%', valor, '%') || Cantidad like concat('%', valor, '%');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `consulta_permiso` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consulta_permiso`(in valor varchar(50))
-BEGIN
-select * from ver_permisos where idpermiso like concat('%', valor, '%') || Nombre like concat('%', valor, '%');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminacion_permiso` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminacion_permiso`(in idpermi int)
-BEGIN
-update permiso set Estado = '0' where idpermiso = idpermi;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminacon_destino` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminacon_destino`(in id_desti int )
-BEGIN
-update destino set estado = '1' where id_destino = id_desti;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_acomodacion`(in id_acomoda int)
-BEGIN
-update acomodacion set estado_acomoda = '0' where id_acomodacion = id_acomoda;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_adicion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_adicion`(in id_adi int)
-BEGIN
-update  adicion set Estado='0' where id_Adicion=id_adi;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_cliente` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_cliente`(in idcli int)
-BEGIN
-update cliente set Estado = '1' where idcliente = idcli;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_detalle_reserv` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_detalle_reserv`(in id_detalle_reserv int)
-BEGIN
-update detalle_reserva set estado = '0' where id_detalle_reserva = id_detalle_reserv;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_hospedaje` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_hospedaje`(in id_hospe int)
-BEGIN
-update hospedaje set estado = '1' where id_hospe = id_hos;
-
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_hospe_acomodacion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_hospe_acomodacion`(in id_hospe_acomoda int)
-BEGIN
-update hospedaje_acomodacion set estado_hospeacomo = '0' where id_hospedaje_acomodacion = id_hospe_acomoda;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_paquete` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_paquete`(in idPaq int)
-BEGIN
-update paquete set estado = '0' where id_paquete = idPaq;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_paquete_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_paquete_tour`(in idpaqtour int)
-BEGIN
-update paquete_tour set condicion = '1' where idPaquete_tour = idpaqtour;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_permiso_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_permiso_usuario`(in idpermiso_usu int)
-BEGIN
-update permiso_usuario set estado = '1' where idPermiso_usuario = idpermiso_usu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Eliminar_reserva` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Eliminar_reserva`(in idReserva int)
-BEGIN
-update reserva set estado='0' where idReserva = idReser;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_tour`(
-    IN p_id_tour INT
-)
-BEGIN
-    UPDATE tour
-    SET estado = '0' 
-    WHERE
-    id_tour = p_id_tour;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `eliminar_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_usuario`(in idusu int)
-BEGIN
-update usuario set estado = '0' where idUsurio = idusu;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insersion_destino` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insersion_destino`(in id_desti int, in departamen varchar(50), in ciuda varchar (45))
-BEGIN
-insert into destino (id_Destino, Departamento,Ciudad, estado) values (id_desti, departamen,ciuda, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insersion_permiso_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insersion_permiso_usuario`(in idPermiso_usu int, in id_permis int, in id_usu int  )
-BEGIN
-insert into permiso_usuario (idPermiso_usuario, id_permiso, id_usuario, estado) values (idPermiso_usu, id_permis, id_usu, '0');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_adicion` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_adicion`(in nom varchar(20), in descrip varchar(200), in cost float)
-BEGIN
-insert into adicion(Nombre,Descripcion,Costo,Estado) value (nom,descrip,cost,'1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_cliente` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_cliente`(in noncli varchar (45), in teleclie varchar (45), in correcli varchar (45), in direclie varchar (45), in canticlien varchar (45))
-BEGIN
-insert into cliente (Nombre, Telefono, Correo,Direccion,Cantidad,Estado) values (noncli,teleclie,correcli,direclie,canticlien, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_hospeda` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_hospeda`(in nom varchar(100), in dire varchar(50), in cor varchar(30),tipo varchar(30),descri varchar(45), tarifa float, des int)
-BEGIN
-insert into hospedaje (nombre,direccion, correo, tipo_hospedaje,descripcion,tarifa_base,id_Destino,estado) values(nom,dire,cor,tipo,descri,tarifa,des,'1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_paquete` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_paquete`(in nomb varchar(200), in descr varchar(500), in vigenciainicio date, in vigenciafin date, in noch int, in inclu varchar(200), in noincluye varchar(200), in cost float, in disponibi varchar(50))
-BEGIN
-insert into paquete (nombre, descripcion, vigencia_inicio, vigencia_fin, noche, incluye, no_incluye, costo, estado, disponibilidad) values (nomb, descr, vigenciainicio, vigenciafin, noch, inclu, noincluye, cost, '1', disponibi);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_paquete_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_paquete_tour`(in idto int, in idpaque int)
-BEGIN
-insert into paquete_tour (id_tour, id_paquete) values (idto, idpaque, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_permiso` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_permiso`(in nom varchar(50))
-BEGIN
-insert into permiso (Nombre,Estado) values (nom, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_reserva` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_reserva`(in idReseva int,in id_usuar int,in Fecha date,in Fecha_inicio date,in Fecha_fin date, in Cantidad int,in Total float,in Estado_reserva varchar(25),in Metodo_pago varchar(25),in imagen blob)
-BEGIN
-insert into reserva(idReserva,id_usuar,Fecha,Fecha_inicio,Fecha_fin,Cantidad,Total,Estado,Metodo_pago,Estado,imagen)
-values (reserv,usuar,fech,fech_inic,fech_fin,canti,total,estad,metodo_pag,'1',imag);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_tour` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_tour`(in nom varchar(50), in descrip varchar(200), in valo float, in dura int, in id_dest int)
-BEGIN
-insert into tour (nombre_tour, descripcion, valor, duracion, id_destino, estado) values (nom, descrip, valo, dura, id_dest, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `insertar_usuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_usuario`(in nom varchar(200), in tipo varchar(20), in docu varchar(20), in cor varchar(200), in sex int, in dire varchar(50), in rol int, in log varchar (30), in cla varchar(40), in fecre date)
-BEGIN
-insert into usuario  values (nom, tipo, docu, cor, sex, dire, rol, log, cla, fecre, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `inst_acomoda` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_acomoda`(in nom varchar(100), in descrip varchar(300))
-BEGIN
-insert into acomodacion (nombre, descripcion, estado_acomoda) values (nom, descrip, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `inst_detalle_reserva` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_detalle_reserva`(in id_detalle_rese int, in id_reser int, in id_paque_tour int, in id_acomoda int, in id_adici int, in habitacon int, in adul int, in infan int, in comentario varchar(500))
-BEGIN
-insert into detalle_reserva (id_detalle_reserva,id_reserva,id_paquete_tour,id_acomodacion,id_adicion,habitaciones,adulto,infante,comentarios, estado)
-values (id_detalle_rese, id_reser, id_paque_tour, id_acomoda, id_adici, habitacon, adul, infan, comentario, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `inst_hospe_acomoda` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_hospe_acomoda`(in acomoda int, in hospe int, in temp varchar(20), in tari_agen float, in tari float)
-BEGIN
-insert into hospedaje_acomodacion (id_acomodacion, id_hospedaje, temporada, tarifa_agencia, tarifa, estado_hospeacomo) values (acomoda, hospe, temp, tari_agen, tari, '1');
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Final view structure for view `mostrar_adicion`
---
-
-/*!50001 DROP VIEW IF EXISTS `mostrar_adicion`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `mostrar_adicion` AS select `adicion`.`id_Adicion` AS `id_Adicion`,`adicion`.`Nombre` AS `nombre`,`adicion`.`Descripcion` AS `descripcion`,`adicion`.`Costo` AS `Costo`,`adicion`.`Estado` AS `estado` from `adicion` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `mostrar_destino`
---
-
-/*!50001 DROP VIEW IF EXISTS `mostrar_destino`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `mostrar_destino` AS select `destino`.`id_Destino` AS `id_Destino`,`destino`.`Departamento` AS `Departamento`,`destino`.`Ciudad` AS `Ciudad` from `destino` where (`destino`.`estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `mostrar_permiso_usuario`
---
-
-/*!50001 DROP VIEW IF EXISTS `mostrar_permiso_usuario`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `mostrar_permiso_usuario` AS select `permiso_usuario`.`idPermiso_usuario` AS `idPermiso_usuario`,`permiso_usuario`.`id_permiso` AS `id_permiso`,`permiso_usuario`.`id_usua` AS `id_usua` from `permiso_usuario` where (`permiso_usuario`.`estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `mostrar_reserva`
---
-
-/*!50001 DROP VIEW IF EXISTS `mostrar_reserva`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `mostrar_reserva` AS select `reserva`.`idReserva` AS `id`,`usuario`.`nombre` AS `nombre`,`reserva`.`Fecha` AS `Fecha`,`reserva`.`Fecha_inicio` AS `Fecha_inicio`,`reserva`.`Fecha_fin` AS `Fecha_fin`,`reserva`.`Cantidad` AS `Cantidad`,`reserva`.`Total` AS `Total`,`reserva`.`Estado_reserva` AS `Estado_reserva`,`reserva`.`Metodo_pago` AS `Metodo_pago`,`reserva`.`Estado` AS `Estado` from (`reserva` join `usuario` on((`usuario`.`idUsuario` = `reserva`.`id_usuar`))) where (`reserva`.`Estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `paquete_vista`
---
-
-/*!50001 DROP VIEW IF EXISTS `paquete_vista`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `paquete_vista` AS select `paquete`.`id_paquete` AS `id_paquete`,`paquete`.`nombre` AS `nombre`,`paquete`.`descripcion` AS `descripcion`,`paquete`.`vigencia_inicio` AS `vigencia_inicio`,`paquete`.`vigencia_fin` AS `vigencia_fin`,`paquete`.`noche` AS `noche`,`paquete`.`incluye` AS `incluye`,`paquete`.`no_incluye` AS `no_incluye`,`paquete`.`costo` AS `costo`,`paquete`.`estado` AS `estado`,`paquete`.`disponibilidad` AS `disponibilidad` from `paquete` where (`paquete`.`estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `ver_permisos`
---
-
-/*!50001 DROP VIEW IF EXISTS `ver_permisos`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ver_permisos` AS select `permiso`.`idpermiso` AS `idpermiso`,`permiso`.`Nombre` AS `Nombre`,`permiso`.`Estado` AS `Estado` from `permiso` where (`permiso`.`Estado` = 1) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_acomodacion`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_acomodacion`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_acomodacion` AS select `acomodacion`.`id_acomodacion` AS `id_Acomodación`,`acomodacion`.`nombre` AS `Nombre`,`acomodacion`.`descripcion` AS `Descripción` from `acomodacion` where (`acomodacion`.`estado_acomoda` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_cliente`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_cliente`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_cliente` AS select `cliente`.`idcliente` AS `idcliente`,`cliente`.`Nombre` AS `Nombre`,`cliente`.`Telefono` AS `Telefono`,`cliente`.`Correo` AS `Correo`,`cliente`.`Direccion` AS `Direccion`,`cliente`.`Cantidad` AS `Cantidad` from `cliente` where (`cliente`.`Estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_detalle_reserva`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_detalle_reserva`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_detalle_reserva` AS select `detalle_reserva`.`id_detalle_reserva` AS `Id`,`reserva`.`Estado_reserva` AS `Estado_Reserva`,`paquete_tour`.`idPaquete_tour` AS `Id_Paquete_Tour`,`acomodacion`.`nombre` AS `Acomodacion`,`adicion`.`Nombre` AS `Adicion`,`detalle_reserva`.`habitaciones` AS `Habitaciones`,`detalle_reserva`.`adulto` AS `Adulto`,`detalle_reserva`.`infante` AS `Infante`,`detalle_reserva`.`comentarios` AS `Comentarios` from ((((`detalle_reserva` join `reserva` on((`reserva`.`idReserva` = `detalle_reserva`.`id_reserva`))) join `paquete_tour` on((`paquete_tour`.`idPaquete_tour` = `detalle_reserva`.`id_paquete_tour`))) join `acomodacion` on((`acomodacion`.`id_acomodacion` = `detalle_reserva`.`id_acomodacion`))) join `adicion` on((`adicion`.`id_Adicion` = `detalle_reserva`.`id_adicion`))) where (`detalle_reserva`.`estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_hospedaje`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_hospedaje`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_hospedaje` AS select `hospedaje`.`idhospedaje` AS `idhospedaje`,`hospedaje`.`nombre` AS `nombre`,`hospedaje`.`direccion` AS `direccion`,`hospedaje`.`correo` AS `correo`,`hospedaje`.`tipo_hospedaje` AS `tipo_hospedaje`,`hospedaje`.`descripcion` AS `descripcion`,`hospedaje`.`tarifa_base` AS `tarifa_base`,`destino`.`Ciudad` AS `Ciudad` from (`hospedaje` join `destino` on((`hospedaje`.`id_Destino` = `destino`.`id_Destino`))) where (`hospedaje`.`estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_hospedaje_acomodacion`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_hospedaje_acomodacion`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_hospedaje_acomodacion` AS select `hospedaje_acomodacion`.`id_hospedaje_acomodacion` AS `Id`,`acomodacion`.`nombre` AS `Acomodación`,`hospedaje`.`nombre` AS `Hospedaje`,`hospedaje_acomodacion`.`temporada` AS `Temporada`,`hospedaje_acomodacion`.`tarifa_agencia` AS `Tarifa_Agencia`,`hospedaje_acomodacion`.`tarifa` AS `Tarifa` from ((`hospedaje_acomodacion` join `acomodacion` on((`acomodacion`.`id_acomodacion` = `hospedaje_acomodacion`.`id_acomodacion`))) join `hospedaje` on((`hospedaje`.`idhospedaje` = `hospedaje_acomodacion`.`id_hospedaje`))) where (`hospedaje_acomodacion`.`estado_hospeacomo` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_paquete_tour`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_paquete_tour`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_paquete_tour` AS select `paquete_tour`.`idPaquete_tour` AS `idUsuario`,`paquete_tour`.`id_tour` AS `tour_nombre`,`paquete_tour`.`id_paquete` AS `nombre`,`paquete_tour`.`condicion` AS `condicion` from ((`paquete_tour` join `paquete` on((`paquete_tour`.`id_paquete` = `paquete`.`id_paquete`))) join `tour` on((`paquete_tour`.`id_tour` = `tour`.`id_tour`))) where (`paquete_tour`.`condicion` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_tour`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_tour`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_tour` AS select `t`.`id_tour` AS `id_tour`,`t`.`nombre_tour` AS `nombre_tour`,`t`.`descripcion` AS `descripcion`,`t`.`valor` AS `valor`,`t`.`duracion` AS `duracion`,`d`.`Ciudad` AS `Ciudad` from (`tour` `t` join `destino` `d` on((`t`.`id_destino` = `d`.`id_Destino`))) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `vista_usuario`
---
-
-/*!50001 DROP VIEW IF EXISTS `vista_usuario`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vista_usuario` AS select `usuario`.`idUsuario` AS `idUsuario`,`usuario`.`nombre` AS `nombre`,`usuario`.`tipo_doc` AS `tipo_doc`,`usuario`.`documento` AS `documento`,`usuario`.`correo` AS `correo`,`usuario`.`sexo` AS `sexo`,`usuario`.`direccion` AS `direccion`,`usuario`.`rol` AS `rol`,`usuario`.`login` AS `login`,`usuario`.`clave` AS `clave`,`usuario`.`fecha_creacion` AS `fecha_creacion`,`usuario`.`estado` AS `estado` from `usuario` where (`usuario`.`estado` = '1') */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2272,4 +739,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-14 11:40:46
+-- Dump completed on 2024-08-16 10:40:09

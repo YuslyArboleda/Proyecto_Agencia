@@ -21,25 +21,23 @@ $(document).ready(function () {
     });
 
     function buscarDestino(){
-        let destino = $("#CajaTexto")
-        .val()
-        .trim();
+        let destino = $("#CajaTexto").val().trim();
         if(destino.length > 0){
             $.ajax({
                 url: "rumbotravel/destino",
                 data: {q:destino},
                 success: function(data){
+                    console.log(data);
                     let result = $("#resultado");
                     result.empty();
                     if(destino.length > 2){
                         if(data.length){
                          data.forEach((element)=>{
                             result.append(`
-                                <ul class="list-group listar_destino">
-                                <li class="list-group-item destino-item"> $(element.destino)</li>
+                                <ul class="list-group">
+                                <li class="list-group">${element.destino}</li>
                                 </ul>
-                                `
-                            )
+                                `);
                          });   
                         }else{
                             result.append("<div>No se encontró resultados</div>");
@@ -50,7 +48,8 @@ $(document).ready(function () {
                 },
             });
         }else{
-            $("#resultado").empty();
+            $("#resultado");
+            result.empty();
         }
     }
 })
