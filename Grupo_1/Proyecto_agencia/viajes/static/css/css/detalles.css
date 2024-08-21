@@ -1,0 +1,61 @@
+.container_dettale{
+    background-color: rgb(246, 246, 249);
+}
+.selecionar2{
+    margin-left: 30%;
+    box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+     border-radius: 5px;
+     padding: 2%;
+}
+h3{
+    margin-left: 20%;
+}
+color{
+    color: rgb(245, 111, 1);
+}
+.btn_selecionar{
+    background-color: gray;
+margin-left: 35%;
+}
+hr {
+    background-color: black;
+}
+.agregar{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+
+}
+.container_detalle{
+   
+    width: 300px;
+    padding: 2%;
+    box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+    border-radius: 5px;
+}
+.container_detalle2{
+   
+    width: 300px;
+    box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+    padding: 2%;
+    border-radius: 5px;
+}
+.container_detalle3{
+    width: 300px;
+    padding: 2%;
+    border-radius: 5px;
+    padding: 2%;
+    box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+}
+.btn_agregar{
+background-color: gray;
+margin-left: 30%;
+}
+.inpus{
+    height: 30px;
+}
+hr.corto {
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+    border: 0.3px solid #ccc; /* Ajusta el color y grosor de la línea */
+     padding: 0;
+}
