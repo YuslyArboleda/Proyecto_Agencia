@@ -35,10 +35,16 @@ $(document).ready(function () {
                          data.forEach((element)=>{
                             result.append(`
                                 <ul class="list-group">
-                                <li class="list-group">${element.destino}</li>
+                                <li class="list-group-item ListaDes">${element.destino}</li>
                                 </ul>
                                 `);
                          });   
+                         $('.ListaDes').on('click', function(e) {
+                             let selecion_destino = $(this).text();
+                             $('#destino_paquete').val(selecion_destino);
+                             result.empty();
+                         });
+
                         }else{
                             result.append("<div>No se encontró resultados</div>");
                         }
