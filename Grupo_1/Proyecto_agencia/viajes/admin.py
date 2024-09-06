@@ -13,13 +13,28 @@ from .models import (
     DetalleReserva,
 )
 
+
+class BaseAdmin(admin.ModelAdmin):
+    class Media:
+        js=("https://code.jquery.com/jquery-3.7.1.min.js", "js/admin.js")
+
+
+class HospedajeAcomodacionInline(admin.TabularInline):
+    model= HospedajeAcomodacion #nombre del modelo donde se va a guardar la informacion
+    extra=1 #nos indica que al menos debe haber un registro
+
+
+class HospedajeAdmin(BaseAdmin): #se registra en el modelo          
+    inlines= [HospedajeAcomodacionInline]
+
+
 admin.site.register(Acomodacion)
-admin.site.register(Hospedaje)
-admin.site.register(HospedajeAcomodacion)
+admin.site.register(Hospedaje, HospedajeAdmin)
+#admin.site.register(HospedajeAcomodacion)
 admin.site.register(Reserva)
 admin.site.register(Cliente)
 admin.site.register(Destino)
-admin.site.register(DetalleReserva)
+admin.site.register(DetalleReserva)      
 admin.site.register(Adicion)
 admin.site.register(PaqueteTour)
 admin.site.register(Tour)

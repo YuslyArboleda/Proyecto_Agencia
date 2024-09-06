@@ -20,5 +20,5 @@ from viajes import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('rumbotravel/',include('viajes.urls')),
+    path('',include('viajes.urls')),
 ]
