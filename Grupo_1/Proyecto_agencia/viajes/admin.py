@@ -16,7 +16,7 @@ from .models import (
 
 class BaseAdmin(admin.ModelAdmin):
     class Media:
-        js=("https://code.jquery.com/jquery-3.7.1.min.js", "js/admin.js")
+        js=("js/jquery-3.7.1.min.js", "js/paquete.js")#agregue la clase de jquery del index al admin, el archivo admin dinamica
 
 
 class HospedajeAcomodacionInline(admin.TabularInline):
