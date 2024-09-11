@@ -1,0 +1,72 @@
+.container_detalle {
+  background-color: rgb(255, 255, 255);
+}
+.container_detalle__selecionar2 {
+  margin-left: 30%;
+  box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+  border-radius: 5px;
+  padding: 2%;
+}
+h3 {
+  margin-left: 20%;
+}
+color {
+  color: rgb(245, 111, 1);
+}
+.btn_selecionar {
+  margin-left: 35%;
+}
+.activo {
+    background-color: rgb(242, 163, 26);
+    color: rgb(255, 255, 255);
+}
+.inactivo {
+    background-color: #f44336; /* Rojo */
+    color: white;
+}
+
+hr {
+  background-color: black;
+}
+.container_detalle__agregar {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+.ocult {
+  display: none;
+}
+.container_detalle__container_seleccion1 {
+  width: 300px;
+  padding: 2%;
+  box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+  border-radius: 5px;
+}
+.container_detalle__container_seleccion2 {
+  width: 300px;
+  box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+  padding: 2%;
+  border-radius: 5px;
+}
+.container_detalle__container_seleccion3 {
+  width: 300px;
+  padding: 2%;
+  border-radius: 5px;
+  padding: 2%;
+  box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.178);
+}
+.container_detalle__btn_agregar {
+  background-color: gray;
+  margin-left: 30%;
+}
+.container_detalle__inpus {
+  height: 30px;
+}
+hr.corto {
+  width: 100px; /* Ajusta el ancho según tus necesidades */
+  border: 0.3px solid #ccc; /* Ajusta el color y grosor de la línea */
+  padding: 0;
+}
+.container_detalle__detalles{
+  margin: 5%;
+}
